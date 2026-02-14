@@ -19,7 +19,7 @@ public class AlgaeIntakeShooter extends SubsystemBase
   {
     algaeIntakeShooterMotor = new SparkMax(AlgaeIntakeConstants.AlgaeIntake.ALGAE_INTAKE_MOTOR_ID, MotorType.kBrushless);
     hardwareConfigs = new HardwareConfigs();
-    algaeIntakeShooterMotor.configure(hardwareConfigs.algaeIntakeSparkConfig, SparkMax.ResetMode.kNoResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
+    //algaeIntakeShooterMotor.configure(hardwareConfigs.algaeIntakeSparkConfig);
   }
   
   private void setMotor(double speed)
