@@ -7,35 +7,37 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.AlgaeIntakeConstants;
-import frc.robot.HardwareConfigs;
+import frc.robot.Constants.FuelFeederConstants;
+//import frc.robot.HardwareConfigs;
+//import frc.robot.Robot;
 
-public class AlgaeIntakeShooter extends SubsystemBase 
+/**
+ * This class is controls the fuel intake motors that move the fuel in and out at different speeds.
+ */
+public class FuelFeeder extends SubsystemBase 
 {
-  private SparkMax algaeIntakeShooterMotor;
-  private HardwareConfigs hardwareConfigs;
+  private SparkMax fuelIntakeMotorLeft;
 
-  public AlgaeIntakeShooter() 
+  public FuelFeeder() 
   {
-    algaeIntakeShooterMotor = new SparkMax(AlgaeIntakeConstants.AlgaeIntake.ALGAE_INTAKE_MOTOR_ID, MotorType.kBrushless);
-    hardwareConfigs = new HardwareConfigs();
-    //algaeIntakeShooterMotor.configure(hardwareConfigs.algaeIntakeSparkConfig);
+    fuelIntakeMotorLeft = new SparkMax(FuelFeederConstants.fuelFeeder.FUEL_FEEDER_MOTOR_ID, MotorType.kBrushless);
+    //hardwareConfigs = new HardwareConfigs();
   }
   
   private void setMotor(double speed)
   {
-    algaeIntakeShooterMotor.set(speed);
+    fuelIntakeMotorLeft.set(speed);
   }
 
   public Command slow()
   {
-      return this.startEnd(() -> this.setMotor(-AlgaeIntakeConstants.AlgaeIntake.HALF_SPEED),
+      return this.startEnd(() -> this.setMotor(-FuelFeederConstants.fuelFeeder.HALF_SPEED),
           () -> this.setMotor(0));
   }
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-AlgaeIntakeConstants.AlgaeIntake.FULL_SPEED),
+      return this.startEnd(() -> this.setMotor(-FuelFeederConstants.fuelFeeder.FULL_SPEED),
           () -> this.setMotor(0));
   }
 

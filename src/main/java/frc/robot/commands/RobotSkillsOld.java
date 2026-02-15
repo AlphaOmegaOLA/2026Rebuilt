@@ -9,42 +9,32 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.subsystems.FuelIntakeAngle;
+import frc.robot.subsystems.CoralIntakeShooter;
+import frc.robot.subsystems.Elevator.PIDElevator;
 import frc.robot.RobotSkillsConstants;
-import frc.robot.subsystems.*;
-import frc.robot.subsystems.PoseEstimator;
 import frc.robot.subsystems.Swerve;
+
+
 import frc.robot.States;
 import frc.robot.Constants.*;
 
-public class RobotSkills
+public class RobotSkillsOld
 {
+    private FuelIntakeAngle coralIntakeArm;
+    private PIDElevator elevator;
+    private Swerve swerve;
     private RobotSkillsConstants constants;
+    private CoralIntakeShooter coralShooter;
 
-    /** Subsystems */
-    private final PoseEstimator s_PoseEstimator = new PoseEstimator();
-    private final RobotSkillsConstants c_Constants = new RobotSkillsConstants();
-    private final Swerve s_Swerve = new Swerve(s_PoseEstimator);
-    private final Climber s_Climber = new Climber();
-    private final FuelFeeder s_fuelFeeder = new FuelFeeder();
-    private final FuelIntake s_fuelIntake = new FuelIntake();
-    private final FuelShooter s_fuelShooter = new FuelShooter();
-
-    public RobotSkills(RobotSkillsConstants c_Constants, FuelShooter s_fuelShooter, FuelFeeder s_fuelFeeder, FuelIntake s_fuelIntake, Swerve s_Swerve)
+    public RobotSkillsOld(FuelIntakeAngle coralIntakeArm, PIDElevator elevator, CoralIntakeShooter shooter, Swerve swerve)
     {
-        this.c_Constants = c_Constants;
-        this.s_fuelShooter = s_fuelShooter;
-        this.s_fuelFeeder = s_fuelFeeder;
-        this.s_fuelIntake = s_fuelIntake;
-        this.s_Swerve = s_Swerve;
+        this.coralIntakeArm = coralIntakeArm;
+        this.elevator = elevator;
+        constants = new RobotSkillsConstants();
+        this.coralShooter = shooter;
+        this.swerve = swerve;
     } 
-
-    public Command fuelIntake()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() -> States.FuelIntakeAngleState = States.FuelIntakeAngleStates.intake),
-            Commands.runOnce(() -> s_fuelIntake.intake(c_Constants.fuelIntakeSpeed);
-        )
-    }
 
     public Command coralIntake()
     {

@@ -4,7 +4,7 @@ import com.ctre.phoenix6.configs.CANcoderConfiguration;
 
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-import com.revrobotics.spark.FeedbackSensor;
+//import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 
 public final class HardwareConfigs 
 {
@@ -60,8 +60,8 @@ public final class HardwareConfigs
 
        swerveAngleSparkConfig.openLoopRampRate(Constants.Swerve.openLoopRamp);
        swerveAngleSparkConfig.closedLoopRampRate(Constants.Swerve.closedLoopRamp);
-
-        /** Elevator Configuration */
+/** 
+        // Elevator Configuration 
         //Elevator motor config
         //Motor inverts and neutral modes
         elevatorSparkConfig.inverted(Constants.ElevatorConstants.Elevator.ELEVATOR_MOTOR_INVERTED);
@@ -80,7 +80,7 @@ public final class HardwareConfigs
         elevatorSparkConfig.closedLoop.i(Constants.ElevatorConstants.Elevator.ELEVATOR_I);
         elevatorSparkConfig.closedLoop.d(Constants.ElevatorConstants.Elevator.ELEVATOR_D);
 
-         /** Climber Configuration */
+         // Climber Configuration 
 
         //Climber motor config
         //Motor inverts and neutral modes
@@ -96,7 +96,7 @@ public final class HardwareConfigs
         climberSparkConfig.smartCurrentLimit(40);
 
 
-        /** Coral Angle Configuration */
+        // Coral Angle Configuration 
         //Coral angle motor config
         //Motor inverts and neutral modes
         coralAngleSparkConfig.inverted(Constants.CoralAngleConstants.CoralAngle.CORAL_ANGLE_MOTOR_INVERTED);
@@ -116,7 +116,7 @@ public final class HardwareConfigs
         coralAngleSparkConfig.closedLoop.i(Constants.CoralAngleConstants.CoralAngle.CORAL_ANGLE_I);
         coralAngleSparkConfig.closedLoop.d(Constants.CoralAngleConstants.CoralAngle.CORAL_ANGLE_D);
 
-        /** Coral Intake Configuration */
+        // Coral Intake Configuration 
         //Coral intake motor config
         //Motor inverts and neutral modes
         coralIntakeSparkConfig.inverted(Constants.CoralIntakeConstants.CoralIntake.CORAL_INTAKE_MOTOR_INVERTED);
@@ -130,7 +130,7 @@ public final class HardwareConfigs
         //current limiting
         coralIntakeSparkConfig.smartCurrentLimit(40);
 
-        /** Algae Intake Configuration */
+        // Algae Intake Configuration 
         //Algae intake motor config
         //Motor inverts and neutral modes
         algaeIntakeSparkConfig.inverted(Constants.AlgaeIntakeConstants.AlgaeIntake.ALGAE_INTAKE_MOTOR_INVERTED);
@@ -144,7 +144,7 @@ public final class HardwareConfigs
         //current limiting
         algaeIntakeSparkConfig.smartCurrentLimit(40);
 
-        /** Algae Spool Configuration */
+        // Algae Spool Configuration 
         // Algae Spool motor config
         // Motor inverts and neutral modes
         algaeSpoolSparkConfig.inverted(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_INVERTED);
@@ -154,8 +154,10 @@ public final class HardwareConfigs
         algaeSpoolSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
         algaeSpoolSparkConfig.encoder.velocityConversionFactor(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_GEAR_RATIO / 64);
         algaeSpoolSparkConfig.closedLoop.positionWrappingEnabled(false);
+*/
 
         //current limiting
         algaeSpoolSparkConfig.smartCurrentLimit(40);
     }
+
 }

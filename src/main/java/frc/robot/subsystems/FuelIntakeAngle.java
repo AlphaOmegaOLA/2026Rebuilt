@@ -6,8 +6,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkBase.ControlType;
-import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
+//import com.revrobotics.spark.SparkBase.PersistMode;
+//import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -16,25 +16,25 @@ import com.revrobotics.spark.SparkClosedLoopController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.CoralAngleConstants;
-import frc.robot.HardwareConfigs;
+import frc.robot.Constants.FuelIntakeAngleConstants;
+//import frc.robot.HardwareConfigs;
 
-public class CoralIntakeArm extends SubsystemBase 
+public class FuelIntakeAngle extends SubsystemBase 
 {
-  private SparkMax coralIntakeArmMotor;
-  private RelativeEncoder coralIntakeArmEncoder;
-  private HardwareConfigs hardwareConfigs;
+  private SparkMax fuelIntakeAngleMotor;
+  private RelativeEncoder fuelIntakeAngleEncoder;
+  //private HardwareConfigs hardwareConfigs;
   public SparkClosedLoopController closedLoopController;
   public double currentCoralIntakeArmTarget = 0.0;
 
-  public CoralIntakeArm() 
+  public FuelIntakeAngle() 
   {
-    coralIntakeArmMotor = new SparkMax(CoralAngleConstants.CoralAngle.CORAL_ANGLE_MOTOR_ID, MotorType.kBrushless);
-    coralIntakeArmEncoder = coralIntakeArmMotor.getEncoder();
-    hardwareConfigs = new HardwareConfigs();
-    coralIntakeArmEncoder.setPosition(0);
-    coralIntakeArmMotor.configure(hardwareConfigs.coralAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
-    closedLoopController = coralIntakeArmMotor.getClosedLoopController();
+    fuelIntakeAngleMotor = new SparkMax(FuelIntakeAngleConstants.FuelIntakeAngle.FUEL_INTAKE_ANGLE_MOTOR_ID, MotorType.kBrushless);
+    fuelIntakeAngleEncoder = fuelIntakeAngleMotor.getEncoder();
+    //hardwareConfigs = new HardwareConfigs();
+    fuelIntakeAngleEncoder.setPosition(0);
+    //fuelIntakeAngleMotor.configure(hardwareConfigs.coralAngleSparkConfig, SparkMax.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    closedLoopController = fuelIntakeAngleMotor.getClosedLoopController();
   }
   
   public void setAngle(double angle)
@@ -44,7 +44,7 @@ public class CoralIntakeArm extends SubsystemBase
 
   public double getAngle() 
   {
-    return coralIntakeArmEncoder.getPosition();
+    return fuelIntakeAngleEncoder.getPosition();
   }
  
  //Check if this is the correct method to get the angle
@@ -52,6 +52,6 @@ public class CoralIntakeArm extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("CORAL ARM ANGLE", coralIntakeArmEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE ANGLE", fuelIntakeAngleEncoder.getPosition());
   }
 }

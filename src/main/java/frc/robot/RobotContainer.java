@@ -21,12 +21,9 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.ControllerMap;
 import frc.robot.States;
-import frc.robot.commands.LimelightAprilTagAlignCommand;
-import frc.robot.commands.LimelightAutoAlignCommand;
-
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.Elevator.*;
+//import frc.robot.subsystems.Elevator.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -73,8 +70,8 @@ public class RobotContainer
     private final JoystickButton algaeSpool_in = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     // A = Coral Intake Position and Angle
     private final JoystickButton coral_Intake = new JoystickButton(operator, XboxController.Button.kA.value);
-    // B = Coral Start Position and Angle
-    private final JoystickButton coral_Start = new JoystickButton(operator, XboxController.Button.kB.value);
+    // B = Fuel Start Angle
+    private final JoystickButton b_fuel_Start = new JoystickButton(operator, XboxController.Button.kB.value);
     // Right Trigger = Coral1 Position and Angle
     //private final JoystickButton coral_coral1 = new JoystickButton(operator, ControllerMap.RB);
     private final Trigger coral_coral1 = new Trigger(() -> operator.getRightTriggerAxis() > 0.5);
@@ -86,24 +83,23 @@ public class RobotContainer
     /* Subsystems */
     private final PoseEstimator s_PoseEstimator = new PoseEstimator();
     private final Swerve s_Swerve = new Swerve(s_PoseEstimator);
-    private final PIDElevator s_elevator = new PIDElevator();
     private final Climber s_Climber = new Climber();
-    private final AlgaeSpool s_AlgaeSpool = new AlgaeSpool();
-    private final AlgaeIntakeShooter s_AlgaeIntakeShooter = new AlgaeIntakeShooter();
-    private final CoralIntakeArm s_CoralIntakeArm = new CoralIntakeArm();
-    private final CoralIntakeShooter s_CoralIntakeShooter = new CoralIntakeShooter();
-    private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
-    private final RobotSkills autos = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
+    private final FuelFeeder s_FuelFeeder = new FuelFeeder();
+    private final FuelIntake s_FuelIntake = new FuelIntake();
+    private final FuelIntakeAngle s_FuelIntakeArm = new FuelIntakeAngle();
+    private final FuelShooter s_FuelShooter = new FuelShooter();
+    //private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
+    //private final RobotSkills autos = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
     private final Vision s_Vision = new Vision(s_PoseEstimator);
     private final Command teleopAutoAlign = new LimelightAprilTagAlignCommand(s_Swerve, s_Vision);
     private final Command autoAlign = new LimelightAutoAlignCommand(s_Swerve, s_Vision);
     
 
     /* Commands */
-    private final Command c_coralIntake = coral.coralIntake();
-    private final Command c_coralStart = coral.coralStart();
-    private final Command c_coral1 = coral.coral1();
-    private final Command c_coral2 = coral.coral2();
+    //private final Command c_coralIntake = coral.coralIntake();
+    private final Command c_fuelStart = new InstantCommand(() -> States.fuelIntakeAngleState = States.FuelIntakeAngleStates.start);
+    //private final Command c_coral1 = coral.coral1();
+    //private final Command c_coral2 = coral.coral2();
 
     /* AutoChooser */
     //private final SendableChooser<Command> autoChooser;
@@ -118,7 +114,7 @@ public class RobotContainer
 
         autoChooser = new SendableChooser<>();
         SmartDashboard.putData("Auto Mode", autoChooser);
-        autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
+        //autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
         autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
         //autoChooser = AutoBuilder.buildAutoChooser();
@@ -138,13 +134,13 @@ public class RobotContainer
 
         // Manual Intake for Coral
          
-        s_CoralIntakeShooter.setDefaultCommand(
-           Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY() * outtakeSpeed), s_CoralIntakeShooter)
-        );
+        //s_CoralIntakeShooter.setDefaultCommand(
+        //   Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY() * outtakeSpeed), s_CoralIntakeShooter)
+        //);
         
 
         // The defaults elevator PID angle
-        s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
+        //s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
         
         //s_elevator.setDefaultCommand(
           //  Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
@@ -186,27 +182,27 @@ public class RobotContainer
         //algae_off.whileTrue(new InstantCommand(() -> outtakeSpeed = 1.0));
         //algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.35));
 
-        climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
-        climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
-        climber_down.whileTrue(new InstantCommand(() -> s_Climber.manual(-1.0)));
-        climber_down.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
+        //climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
+        //climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
+        //climber_down.whileTrue(new InstantCommand(() -> s_Climber.manual(-1.0)));
+        //climber_down.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
 
         /* Operator Buttons */
-        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(-1.0)));
-        algaeSpool_out.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
-        algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.intake(1.0)));
-        algae_intake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
-        algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.outtake(-1.0)));
-        algae_outtake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
-        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intakeUp(1.0)));
-        algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
-        coral_Intake.onTrue(c_coralIntake);
+        //algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(-1.0)));
+        //algaeSpool_out.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
+        //algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.intake(1.0)));
+        //algae_intake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
+        //algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.outtake(-1.0)));
+        //algae_outtake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
+        //algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intakeUp(1.0)));
+        //algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
+        //coral_Intake.onTrue(c_coralIntake);
         //coral_Intake.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL INTAKE BUTTON")));
-        coral_Start.onTrue(c_coralStart);
+        b_fuel_Start.onTrue(c_fuelStart);
         //coral_Start.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL START BUTTON")));
-        coral_coral1.onTrue(c_coral1);
+        //coral_coral1.onTrue(c_coral1);
         //coral_coral1.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL CORAL1 BUTTON")));
-        coral_coral2.onTrue(c_coral2);
+        //coral_coral2.onTrue(c_coral2);
         //coral_coral2.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL C0RAL2 BUTTON")));
         alignButton.whileTrue(teleopAutoAlign);
     }

@@ -18,11 +18,13 @@ import edu.wpi.first.math.util.Units;
 import frc.lib.util.swerveUtil.COTSNeoSwerveConstants;
 import frc.lib.util.swerveUtil.SwerveModuleConstants;
 import frc.lib.util.swerveUtil.COTSNeoSwerveConstants.driveGearRatios;
+
 public final class Constants 
 {
     public static final double stickDeadband = 0.1;
 
-    public static final class Swerve {
+    public static final class Swerve 
+    {
         public static final int pigeonID = 18;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
@@ -155,83 +157,76 @@ public final class Constants
         }
     }
 
-    public final class ElevatorConstants 
-    {
-        // SPEEDS FOR ALL MOTORS
-        // May be necessary to override these down
-        // below for specific motors.
-        public static final double FULL = 1.0;
-        public static final double HALF = 0.5;
-        public static final double QUARTER = 0.25;
-    
-        /* ELEVATOR SUBSYSTEM */
-        public static final class Elevator 
-        {
-            // ARM MOTOR IDS AND SPEEDS
-            public static final int ELEVATOR_MOTOR_ID = 4;
-            public static final boolean ELEVATOR_MOTOR_INVERTED = false;
-            public static final IdleMode ELEVATOR_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double FULL_SPEED = FULL;
-            public static final double HALF_SPEED = HALF;
-            public static final double QUARTER_SPEED = QUARTER;
-            // Uses the through bore encoder
-            public static final int ELEVATOR_ENCODER_ID = 0;
-        
-            // ELEVATOR HEIGHTS
-            // Need to determine the starting offset angle of the
-            // Rev Through Bore Encoder and set it here:
-            public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
-            public static final double ELEVATOR_GEAR_RATIO = 20.0;
-            public static final double ELEVATOR_START_ANGLE =  0.0; // We hope this hits the tray
-            public static final double ELEVATOR_CORAL1_ANGLE = -1020.0;
-            public static final double ELEVATOR_CORAL2_ANGLE = -2685.0;
-    
-            // ELEVATOR PID - we will tune these values!!
-            public static final int ELEVATOR_CURRENT_LIMIT = 50;
-            public static final double ELEVATOR_UPDATE_OUTPUT = .02;
-            public static final double ELEVATOR_MAX_VELOCITY = 1.75;
-            public static final double ELEVATOR_MAX_ACCELERATION = .75;
-            public static final double ELEVATOR_P = 0.01;
-            public static final double ELEVATOR_I = 0.0;
-            public static final double ELEVATOR_D = 0.0002;
-            public static final double ELEVATOR_S = 0.0;
-            public static final double ELEVATOR_G = 0.0;
-            public static final double ELEVATOR_V = 0.0;
-            public static final double ERROR_TOLERANCE = 0.1;
-        }
-    }
-    
-    public final class CoralIntakeConstants
+    public final class FuelIntakeConstants
     {
         public static final double FULL = 1.0;
         public static final double HALF = 0.5;
         public static final double QUARTER = 0.25;
         
-        public static final class CoralIntake
+        public static final class FuelIntake
         {
-            public static final int CORAL_INTAKE_MOTOR_ID = 6;
-            public static final boolean CORAL_INTAKE_MOTOR_INVERTED = false;
-            public static final IdleMode CORAL_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double CORAL_INTAKE_GEAR_RATIO = 5.0;
+            public static final int FUEL_INTAKE_MOTOR_LEFT_ID = 11;
+            public static final int FUEL_INTAKE_MOTOR_RIGHT_ID = 90;
+            public static final boolean FUEL_INTAKE_MOTOR_LEFT_INVERTED = false;
+            public static final boolean FUEL_INTAKE_MOTOR_RIGHT_INVERTED = false;
+            public static final  IdleMode FUEL_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FUEL_INTAKE_GEAR_RATIO = 1.0;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
             public static final double QUARTER_SPEED = QUARTER;
         }
-        
     }
 
-    public final class CoralAngleConstants
+    public final class FuelFeederConstants
     {
         public static final double FULL = 1.0;
         public static final double HALF = 0.5;
         public static final double QUARTER = 0.25;
         
-        public static final class CoralAngle
+        public static final class fuelFeeder
+        {
+            public static final int FUEL_FEEDER_MOTOR_ID = 11;
+            public static final boolean FUEL_FEEDER_MOTOR_INVERTED = false;
+            public static final  IdleMode FUEL_FEEDER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FUEL_INTAKEFUEL_FEEDER_GEAR_RATIO = 1.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+        }
+    }
+
+    public final class FuelShooterConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class FuelShooter
+        {
+            public static final int FUEL_SHOOTER_MOTOR_LEFT_ID = 11;
+            public static final int FUEL_SHOOTER_MOTOR_RIGHT_ID = 90;
+            public static final boolean FUEL_SHOOTER_MOTOR_LEFT_INVERTED = false;
+            public static final boolean FUEL_SHOOTER_MOTOR_RIGHT_INVERTED = false;
+            public static final  IdleMode FUEL_SHOOTER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FUEL_SHOOTER_GEAR_RATIO = 1.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+        }
+    }
+
+    public final class ClimberConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class Climber
         {
              // ARM MOTOR IDS AND SPEEDS
-             public static final int CORAL_ANGLE_MOTOR_ID = 5;
-             public static final boolean CORAL_ANGLE_MOTOR_INVERTED = false;
-             public static final  IdleMode CORAL_ANGLE_NEUTRAL_MODE = IdleMode.kBrake;
+             public static final int CLIMBER_MOTOR_ID = 5;
+             public static final boolean CLIMBER_MOTOR_INVERTED = false;
+             public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;
              public static final double HALF_SPEED = HALF;
              public static final double QUARTER_SPEED = QUARTER;
@@ -241,93 +236,70 @@ public final class Constants
              // CORAL ANGLES
              // Need to determine the starting offset angle of the
              // Rev Through Bore Encoder and set it here:
-             public static final Rotation2d CORAL_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
-             public static final double CORAL_ANGLE_GEAR_RATIO = 20.0;
-             public static final double CORAL_ANGLE_START_ANGLE = -30.0; // We hope this hits the tray
-             public static final double CORAL_ANGLE_CORAL1_ANGLE = -35.0;
-             public static final double CORAL_ANGLE_CORAL2_ANGLE = -35.0;
-             public static final double CORAL_ANGLE_INTAKE_ANGLE = -180.0;
+             public static final Rotation2d CLIMBER_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+             public static final double CLIMBER_MOTOR_GEAR_RATIO = 20.0;
+             public static final double CLIMBER_START_ANGLE = -30.0;
+             public static final double CLIMBER_READY_ANGLE = -30.0;
+             public static final double CLIMBER_CLIMB_ANGLE = -180.0;
      
              // ELEVATOR PID - we will tune these values!!
-             public static final int CORAL_ANGLE_CURRENT_LIMIT = 50;
-             public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
-             public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
-             public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
-             public static final double CORAL_ANGLE_P = 0.005;
-             public static final double CORAL_ANGLE_I = 0.0;
-             public static final double CORAL_ANGLE_D = 0.005;
-             public static final double CORAL_ANGLE_S = 1.1;
-             public static final double CORAL_ANGLE_G = 1.2;
-             public static final double CORAL_ANGLE_V = 1.3;
+             public static final int CLIMBER_ANGLE_CURRENT_LIMIT = 50;
+             public static final double CLIMBER_UPDATE_OUTPUT = .02;
+             public static final double CLIMBER_MAX_VELOCITY = 1.75;
+             public static final double CLIMBER_MAX_ACCELERATION = .75;
+             public static final double CLIMBER_P = 0.005;
+             public static final double CLIMBER_I = 0.0;
+             public static final double CLIMBER_D = 0.005;
+             public static final double CLIMBER_S = 1.1;
+             public static final double CLIMBERE_G = 1.2;
+             public static final double CLIMBER_V = 1.3;
              public static final double ERROR_TOLERANCE = 0.1;
         }
     }
 
-    public final class AlgaeSpoolConstants
-    {
-        public static final double FULL = 1.0;
-        public static final double HALF = 0.5;
-        public static final double QUARTER = 0.25;
-
-        public static final class AlgaeSpool
-        {
-            public static final int ALGAE_SPOOL_MOTOR_ID = 19;
-            public static final boolean ALGAE_SPOOL_MOTOR_INVERTED = false;
-            public static final IdleMode ALGAE_SPOOL_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double ALGAE_SPOOL_GEAR_RATIO = 64.0;
-            public static final double FULL_SPEED = FULL;
-            public static final double HALF_SPEED = HALF;
-            public static final double QUARTER_SPEED = QUARTER;
-        }
-    }
-
-    public final class AlgaeIntakeConstants
+    public final class FuelIntakeAngleConstants
     {
         public static final double FULL = 1.0;
         public static final double HALF = 0.5;
         public static final double QUARTER = 0.25;
         
-        public static final class AlgaeIntake
+        public static final class FuelIntakeAngle
         {
-            public static final int ALGAE_INTAKE_MOTOR_ID = 11;
-            public static final boolean ALGAE_INTAKE_MOTOR_INVERTED = false;
-            public static final  IdleMode ALGAE_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double ALGAE_INTAKE_GEAR_RATIO = 1.0;
-            public static final double FULL_SPEED = FULL;
-            public static final double HALF_SPEED = HALF;
-            public static final double QUARTER_SPEED = QUARTER;
-        }
-    }
-     public final class ClimberConstants
-    {
-        public static final double FULL = 1.0;
-        public static final double HALF = 0.5;
-        public static final double QUARTER = 0.25;
-
-        public static final class Climber
-        {
-            public static final int CLIMBER_MOTOR_ID = 14;
-            public static final boolean CLIMBER_MOTOR_INVERTED = false;
-            public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double FULL_SPEED = FULL;
-            public static final double HALF_SPEED = HALF;
-            public static final double QUARTER_SPEED = QUARTER;
-            public static final double CLIMBER_GEAR_RATIO = 100.0;
-            public static final int CLIMBER_CURRENT_LIMIT = 50;
-            public static final double CLIMBER_UPDATE_OUTPUT = .02;
-            public static final double CLIMBER_MAX_VELOCITY = 1.75;
-            public static final double CLIMBER_MAX_ACCELERATION = .75;
-            public static final double CLIMBER_P = .2;
-            public static final double CLIMBER_I = 0.0;
-            public static final double CLIMBER_D = 0.7;
-            public static final double CLIMBER_S = 1.1;
-            public static final double CLIMBER_G = 1.2;
-            public static final double CLIMBER_V = 1.3;
-            public static final double ERROR_TOLERANCE = 0.1;
+             // ARM MOTOR IDS AND SPEEDS
+             public static final int FUEL_INTAKE_ANGLE_MOTOR_ID = 5;
+             public static final boolean FUEL_INTAKE_ANGLE_MOTOR_INVERTED = false;
+             public static final  IdleMode FUEL_INTAKE_ANGLE_NEUTRAL_MODE = IdleMode.kBrake;
+             public static final double FULL_SPEED = FULL;
+             public static final double HALF_SPEED = HALF;
+             public static final double QUARTER_SPEED = QUARTER;
+             // Uses the through bore encoder
+             //public static final int CORAL_ANGLE_ENCODER_ID = 0;
+         
+             // CORAL ANGLES
+             // Need to determine the starting offset angle of the
+             // Rev Through Bore Encoder and set it here:
+             public static final Rotation2d FUEL_INTAKE_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+             public static final double FUEL_INTAKE_ANGLE_MOTOR_GEAR_RATIO = 20.0;
+             public static final double FUEL_INTAKE_ANGLE_START_ANGLE = -30.0; // We hope this hits the tray
+             public static final double FUEL_INTAKE_ANGLE = -180.0;
+     
+             // ELEVATOR PID - we will tune these values!!
+             public static final int FUEL_INTAKE_ANGLE_CURRENT_LIMIT = 50;
+             public static final double FUEL_INTAKE_ANGLE_UPDATE_OUTPUT = .02;
+             public static final double FUEL_INTAKE_ANGLE_MAX_VELOCITY = 1.75;
+             public static final double FUEL_INTAKE_ANGLE_MAX_ACCELERATION = .75;
+             public static final double FUEL_INTAKE_ANGLE_P = 0.005;
+             public static final double FUEL_INTAKE_ANGLE_I = 0.0;
+             public static final double FUEL_INTAKE_ANGLE_D = 0.005;
+             public static final double FUEL_INTAKE_ANGLE_S = 1.1;
+             public static final double FUEL_INTAKE_ANGLE_G = 1.2;
+             public static final double FUEL_INTAKE_ANGLE_V = 1.3;
+             public static final double ERROR_TOLERANCE = 0.1;
         }
     }
 
-    public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
+    public static final class AutoConstants 
+    { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;

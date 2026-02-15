@@ -13,9 +13,14 @@ public class States
         aligned, unAligned, normal
     }
 
-    public static enum ElevatorStates 
+    public static enum ClimberStates 
     {
-        hold, coral0, coral1, coral2
+       start, ready, climb
+    }
+
+    public static enum FuelIntakeAngleStates 
+    {
+       start, intake
     }
 
     public static enum CoralIntakeArmStates 
@@ -25,6 +30,7 @@ public class States
 
     public static DriveStates driveState = DriveStates.standard;
     public static AlignedStates alignedState = AlignedStates.normal;
-    public static ElevatorStates elevatorState = ElevatorStates.hold;
+    public static ClimberStates climberStates = ClimberStates.start;
+    public static FuelIntakeAngleStates fuelIntakeAngleState = FuelIntakeAngleStates.start; 
     public static CoralIntakeArmStates coralIntakeArmState = CoralIntakeArmStates.coral0;
 }

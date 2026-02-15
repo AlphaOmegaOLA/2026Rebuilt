@@ -4,55 +4,47 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.SparkBase.ControlType;
+//import com.revrobotics.spark.SparkBase.PersistMode;
+//import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.SparkClosedLoopController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.HardwareConfigs;
+//import frc.robot.HardwareConfigs;
+//import frc.robot.Robot;
 
 public class Climber extends SubsystemBase 
 {
-  /** Creates a new PIDClimber */
   private SparkMax climberMotor;
   private RelativeEncoder climberEncoder;
-  private HardwareConfigs hardwareConfigs;
+  //private HardwareConfigs hardwareConfigs;
+  public SparkClosedLoopController closedLoopController;
+  public double currentCoralIntakeArmTarget = 0.0;
 
   public Climber() 
   {
-
-        climberMotor = new SparkMax(ClimberConstants.Climber.CLIMBER_MOTOR_ID, MotorType.kBrushless);
-        climberEncoder = climberMotor.getEncoder();
-        hardwareConfigs = new HardwareConfigs();
-        climberEncoder.setPosition(0);
-        climberMotor.configure(hardwareConfigs.climberSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+    climberMotor = new SparkMax(ClimberConstants.Climber.CLIMBER_MOTOR_ID, MotorType.kBrushless);
+    climberEncoder = climberMotor.getEncoder();
+    //hardwareConfigs = new HardwareConfigs();
+    climberEncoder.setPosition(0);
+    //fuelIntakeAngleMotor.configure(hardwareConfigs.coralAngleSparkConfig, SparkMax.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    closedLoopController = climberMotor.getClosedLoopController();
   }
   
-  private void setMotor(double speed)
+  public void setAngle(double angle)
   {
-    climberMotor.set(speed);
+    closedLoopController.setReference(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
 
-  public Command slow()
+  public double getAngle() 
   {
-      return this.startEnd(() -> this.setMotor(-ClimberConstants.Climber.HALF_SPEED),
-          () -> this.setMotor(0));
-  }
-
-  public Command fast()
-  {
-      return this.startEnd(() -> this.setMotor(-ClimberConstants.Climber.FULL_SPEED),
-          () -> this.setMotor(0));
-  }
-
-  public void manual(double speed)
-  {
-      this.setMotor(speed);       
+    return climberEncoder.getPosition();
   }
  
  //Check if this is the correct method to get the angle
@@ -60,6 +52,6 @@ public class Climber extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("CLIMBER ANGLE", climberEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE ANGLE", climberEncoder.getPosition());
   }
 }
