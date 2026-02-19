@@ -23,6 +23,7 @@ public final class Constants
 {
     public static final double stickDeadband = 0.1;
 
+    //** Swerve drive system constants. Once we get this working, no touchy */
     public static final class Swerve 
     {
         public static final int pigeonID = 18;
@@ -31,7 +32,7 @@ public final class Constants
         public static final COTSNeoSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
         COTSNeoSwerveConstants.SDSMK4i(driveGearRatios.SDSMK4i_L2);
 
-        /* Drivetrain Constants */
+        // Drivetrain Constants
         // Did we update these measurements?
         public static final double trackWidth = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
         public static final double wheelBase = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
@@ -40,26 +41,26 @@ public final class Constants
         public static final double driveRevToMeters =  wheelCircumference / (chosenModule.driveGearRatio);
         public static final double driveRpmToMetersPerSecond = driveRevToMeters/60 ;
 
-        /* Swerve Kinematics 
-         * No need to ever change this unless you are not doing a traditional rectangular/square 4 module swerve */
+        //Swerve Kinematics 
+        //No need to ever change this unless you are not doing a traditional rectangular/square 4 module swerve
          public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
             new Translation2d(wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(wheelBase / 2.0, -trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
 
-        /* Module Gear Ratios */
+        //Module Gear Ratios
         public static final double driveGearRatio = chosenModule.driveGearRatio;
         public static final double angleGearRatio = chosenModule.angleGearRatio;
 
-         /* Motor Inverts */
+         // Motor Inverts
          public static final boolean angleMotorInvert = chosenModule.angleMotorInvert;
          public static final boolean driveMotorInvert = chosenModule.driveMotorInvert;
 
-        /* Angle Encoder Invert */
+        // Angle Encoder Invert
         public static final SensorDirectionValue cancoderInvert = chosenModule.cancoderInvert;
 
-        /* Swerve Current Limiting */
+        // Swerve Current Limiting
         public static final int angleCurrentLimit = 25;
         public static final int angleCurrentThreshold = 40;
         public static final double angleCurrentThresholdTime = 0.1;
@@ -70,53 +71,53 @@ public final class Constants
         public static final double driveCurrentThresholdTime = 0.1;
         public static final boolean driveEnableCurrentLimit = true;
 
-        /* These values are used by the drive Motor to ramp in open loop and closed loop driving.
-         * We found a small open loop ramp (0.25) helps with tread wear, tipping, etc */
+        // These values are used by the drive Motor to ramp in open loop and closed loop driving.
+        // We found a small open loop ramp (0.25) helps with tread wear, tipping, etc
         public static final double openLoopRamp = 0.2;
         public static final double closedLoopRamp = 0.0;
 
-        /* Angle Motor PID Values */
+        // Angle Motor PID Values 
         public static final double angleKP = chosenModule.angleKP;
         public static final double angleKI = chosenModule.angleKI;
         public static final double angleKD = chosenModule.angleKD;
         public static final double angleKF = chosenModule.angleKF;
 
-        /* Drive Motor PID Values */
+        // Drive Motor PID Values
         // Did we update this yet?
         public static final double driveKP = 0.012; //TODO: This must be tuned to specific robot
         public static final double driveKI = 0.0;
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
 
-         /* Heading PID Values */
+         // Heading PID Values
         public static final double HeadingKP = 0.5;
         public static final double HeadingKI = 0.0;
         public static final double HeadingKD = 0;
         public static final double HeadingTolerence = 0;
 
-        //Motor power gain
+        // Motor power gain
         public static final double drivePower = 1;
         public static final double anglePower = .9;
 
 
-        /* Drive Motor Characterization Values from SysID */
+        // Drive Motor Characterization Values from SysID
         // Did we update this yet?
         public static final double driveKS = (0.32); //TODO: This must be tuned to specific robot
         public static final double driveKV = (1.51);
         public static final double driveKA = (0.27);
 
-        /* Swerve Profiling Values */
-        /** Meters per Second */
+        // Swerve Profiling Values
+        // Meters per Second
         public static final double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
-        /** Radians per Second */
+        // Radians per Second
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
 
-        /* Neutral Modes */
+        // Neutral Modes 
         public static final  IdleMode angleNeutralMode = IdleMode.kCoast;
         public static final  IdleMode driveNeutralMode = IdleMode.kBrake;
 
-        /* Module Specific Constants */
-        /* Front Left Module - Module 0 */
+        // Module Specific Constants 
+        // Front Left Module - Module 0 
         public static final class Mod0 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 3;
@@ -126,7 +127,7 @@ public final class Constants
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
 
-        /* Front Right Module - Module 1 */
+        // Front Right Module - Module 1 
         public static final class Mod1 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 15;
             public static final int angleMotorID = 17;
@@ -136,7 +137,7 @@ public final class Constants
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
         
-        /* Back Left Module - Module 2 */
+        // Back Left Module - Module 2 
         public static final class Mod2 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 7;
             public static final int angleMotorID = 9;
@@ -146,7 +147,7 @@ public final class Constants
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
 
-        /* Back Right Module - Module 3 */
+        // Back Right Module - Module 3 
         public static final class Mod3 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 10;
             public static final int angleMotorID = 13;
@@ -157,6 +158,7 @@ public final class Constants
         }
     }
 
+    /** Fuel intake and outtake constants */
     public final class FuelIntakeConstants
     {
         public static final double FULL = 1.0;
@@ -177,6 +179,49 @@ public final class Constants
         }
     }
 
+    /** This is the arm that moves the fuel intake up and down between the start and the intake angles  */
+    public final class FuelIntakeArmConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class FuelIntakeArm
+        {
+             // ARM MOTOR IDS AND SPEEDS
+             public static final int FUEL_INTAKE_ARM_MOTOR_ID = 5;
+             public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
+             public static final  IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
+             public static final double FULL_SPEED = FULL;
+             public static final double HALF_SPEED = HALF;
+             public static final double QUARTER_SPEED = QUARTER;
+             // Uses the through bore encoder
+             //public static final int CORAL_ANGLE_ENCODER_ID = 0;
+         
+             // CORAL ANGLES
+             // Need to determine the starting offset angle of the
+             // Rev Through Bore Encoder and set it here:
+             public static final Rotation2d FUEL_INTAKE_ARM_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+             public static final double FUEL_INTAKE_ARM_MOTOR_GEAR_RATIO = 20.0;
+             public static final double FUEL_INTAKE_ARM_START_ANGLE = -30.0; // We hope this hits the tray
+             public static final double FUEL_INTAKE_ARM_GETFUEL_ANGLE = -180.0;
+     
+             // ELEVATOR PID - we will tune these values!!
+             public static final int FUEL_INTAKE_ARM_CURRENT_LIMIT = 50;
+             public static final double FUEL_INTAKE_ARM_UPDATE_OUTPUT = .02;
+             public static final double FUEL_INTAKE_ARM_MAX_VELOCITY = 1.75;
+             public static final double FUEL_INTAKE_ARM_MAX_ACCELERATION = .75;
+             public static final double FUEL_INTAKE_ARM_P = 0.005;
+             public static final double FUEL_INTAKE_ARM_I = 0.0;
+             public static final double FUEL_INTAKE_ARM_D = 0.005;
+             public static final double FUEL_INTAKE_ARM_S = 1.1;
+             public static final double FUEL_INTAKE_ARM_G = 1.2;
+             public static final double FUEL_INTAKE_ARM_V = 1.3;
+             public static final double ERROR_TOLERANCE = 0.1;
+        }
+    }
+
+    /** We've replaced this with a passive ramp design but leaving it here until the ramp is installed and working */    
     public final class FuelFeederConstants
     {
         public static final double FULL = 1.0;
@@ -195,6 +240,26 @@ public final class Constants
         }
     }
 
+    /** This is the bottom row of wheels that feed fuel up to the shooter */
+    public final class FuelIndexerConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class FuelIndexer
+        {
+            public static final int FUEL_INDEXER_MOTOR_ID = 11;
+            public static final boolean FUEL_INDEXER_MOTOR_INVERTED = false;
+            public static final  IdleMode FUEL_INDEXER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FUEL_INDEXER_GEAR_RATIO = 1.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+        }
+    }
+
+    /** This the fuel shooter that moves in one direction */
     public final class FuelShooterConstants
     {
         public static final double FULL = 1.0;
@@ -215,6 +280,7 @@ public final class Constants
         }
     }
 
+    /** This is the climber hooks  */
     public final class ClimberConstants
     {
         public static final double FULL = 1.0;
@@ -257,47 +323,7 @@ public final class Constants
         }
     }
 
-    public final class FuelIntakeAngleConstants
-    {
-        public static final double FULL = 1.0;
-        public static final double HALF = 0.5;
-        public static final double QUARTER = 0.25;
-        
-        public static final class FuelIntakeAngle
-        {
-             // ARM MOTOR IDS AND SPEEDS
-             public static final int FUEL_INTAKE_ANGLE_MOTOR_ID = 5;
-             public static final boolean FUEL_INTAKE_ANGLE_MOTOR_INVERTED = false;
-             public static final  IdleMode FUEL_INTAKE_ANGLE_NEUTRAL_MODE = IdleMode.kBrake;
-             public static final double FULL_SPEED = FULL;
-             public static final double HALF_SPEED = HALF;
-             public static final double QUARTER_SPEED = QUARTER;
-             // Uses the through bore encoder
-             //public static final int CORAL_ANGLE_ENCODER_ID = 0;
-         
-             // CORAL ANGLES
-             // Need to determine the starting offset angle of the
-             // Rev Through Bore Encoder and set it here:
-             public static final Rotation2d FUEL_INTAKE_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
-             public static final double FUEL_INTAKE_ANGLE_MOTOR_GEAR_RATIO = 20.0;
-             public static final double FUEL_INTAKE_ANGLE_START_ANGLE = -30.0; // We hope this hits the tray
-             public static final double FUEL_INTAKE_ANGLE = -180.0;
-     
-             // ELEVATOR PID - we will tune these values!!
-             public static final int FUEL_INTAKE_ANGLE_CURRENT_LIMIT = 50;
-             public static final double FUEL_INTAKE_ANGLE_UPDATE_OUTPUT = .02;
-             public static final double FUEL_INTAKE_ANGLE_MAX_VELOCITY = 1.75;
-             public static final double FUEL_INTAKE_ANGLE_MAX_ACCELERATION = .75;
-             public static final double FUEL_INTAKE_ANGLE_P = 0.005;
-             public static final double FUEL_INTAKE_ANGLE_I = 0.0;
-             public static final double FUEL_INTAKE_ANGLE_D = 0.005;
-             public static final double FUEL_INTAKE_ANGLE_S = 1.1;
-             public static final double FUEL_INTAKE_ANGLE_G = 1.2;
-             public static final double FUEL_INTAKE_ANGLE_V = 1.3;
-             public static final double ERROR_TOLERANCE = 0.1;
-        }
-    }
-
+    /* Constants used for auto mode */
     public static final class AutoConstants 
     { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
@@ -328,6 +354,7 @@ public final class Constants
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     }
 
+    /* Used by the swerve drive. Also important if we get the Limelight working */
     public static final class PoseEstimator {
         public static final Matrix<N3,N1> stateStdDevs = VecBuilder.fill(0.1, 0.1, 0.1);
         public static final Matrix<N3,N1> visionStdDevs = VecBuilder.fill(0.9, 0.9, 0.9);

@@ -20,7 +20,7 @@ public class ClimberAngleCommand extends Command
     @Override
     public void execute()
     {
-        switch (States.climberStates) 
+        switch (States.climberState) 
         {
           case start:
             currentClimberHooksAngleTarget = ClimberConstants.Climber.CLIMBER_START_ANGLE;

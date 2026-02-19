@@ -16,25 +16,25 @@ import com.revrobotics.spark.SparkClosedLoopController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.FuelIntakeAngleConstants;
+import frc.robot.Constants.FuelIntakeArmConstants;
 //import frc.robot.HardwareConfigs;
 
-public class FuelIntakeAngle extends SubsystemBase 
+public class FuelIntakeArm extends SubsystemBase 
 {
-  private SparkMax fuelIntakeAngleMotor;
-  private RelativeEncoder fuelIntakeAngleEncoder;
+  private SparkMax fuelIntakeArmMotor;
+  private RelativeEncoder fuelIntakeArmEncoder;
   //private HardwareConfigs hardwareConfigs;
   public SparkClosedLoopController closedLoopController;
-  public double currentCoralIntakeArmTarget = 0.0;
+  public double currentFuelIntakeArmTarget = 0.0;
 
-  public FuelIntakeAngle() 
+  public FuelIntakeArm() 
   {
-    fuelIntakeAngleMotor = new SparkMax(FuelIntakeAngleConstants.FuelIntakeAngle.FUEL_INTAKE_ANGLE_MOTOR_ID, MotorType.kBrushless);
-    fuelIntakeAngleEncoder = fuelIntakeAngleMotor.getEncoder();
+    fuelIntakeArmMotor = new SparkMax(FuelIntakeArmConstants.FuelIntakeArm.FUEL_INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
+    fuelIntakeArmEncoder = fuelIntakeArmMotor.getEncoder();
     //hardwareConfigs = new HardwareConfigs();
-    fuelIntakeAngleEncoder.setPosition(0);
+    fuelIntakeArmEncoder.setPosition(0);
     //fuelIntakeAngleMotor.configure(hardwareConfigs.coralAngleSparkConfig, SparkMax.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    closedLoopController = fuelIntakeAngleMotor.getClosedLoopController();
+    closedLoopController = fuelIntakeArmMotor.getClosedLoopController();
   }
   
   public void setAngle(double angle)
@@ -44,7 +44,7 @@ public class FuelIntakeAngle extends SubsystemBase
 
   public double getAngle() 
   {
-    return fuelIntakeAngleEncoder.getPosition();
+    return fuelIntakeArmEncoder.getPosition();
   }
  
  //Check if this is the correct method to get the angle
@@ -52,6 +52,6 @@ public class FuelIntakeAngle extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("FUEL INTAKE ANGLE", fuelIntakeAngleEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE ANGLE", fuelIntakeArmEncoder.getPosition());
   }
 }

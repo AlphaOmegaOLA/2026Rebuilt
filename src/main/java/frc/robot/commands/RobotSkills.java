@@ -18,34 +18,37 @@ import frc.robot.Constants.*;
 
 public class RobotSkills
 {
-    private RobotSkillsConstants constants;
+    private final RobotSkillsConstants c_Constants = new RobotSkillsConstants();  
 
     /** Subsystems */
-    private final PoseEstimator s_PoseEstimator = new PoseEstimator();
-    private final RobotSkillsConstants c_Constants = new RobotSkillsConstants();
-    private final Swerve s_Swerve = new Swerve(s_PoseEstimator);
-    private final Climber s_Climber = new Climber();
-    private final FuelFeeder s_fuelFeeder = new FuelFeeder();
-    private final FuelIntake s_fuelIntake = new FuelIntake();
-    private final FuelShooter s_fuelShooter = new FuelShooter();
+    private PoseEstimator s_PoseEstimator;
+    private Swerve s_Swerve;
+    private Climber s_Climber;
+    private FuelFeeder s_fuelFeeder;
+    private FuelIndexer s_fuelIndexer;
+    private FuelIntake s_fuelIntake;
+    private FuelShooter s_fuelShooter;
 
-    public RobotSkills(RobotSkillsConstants c_Constants, FuelShooter s_fuelShooter, FuelFeeder s_fuelFeeder, FuelIntake s_fuelIntake, Swerve s_Swerve)
+
+    public RobotSkills(FuelShooter s_fuelShooter, FuelIndexer s_fuelIndexer, FuelIntake s_fuelIntake, Swerve s_Swerve)
     {
-        this.c_Constants = c_Constants;
         this.s_fuelShooter = s_fuelShooter;
-        this.s_fuelFeeder = s_fuelFeeder;
+        this.s_fuelIndexer = s_fuelIndexer;
         this.s_fuelIntake = s_fuelIntake;
         this.s_Swerve = s_Swerve;
     } 
 
-    public Command fuelIntake()
+    public Command shootFuel()
     {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() -> States.FuelIntakeAngleState = States.FuelIntakeAngleStates.intake),
-            Commands.runOnce(() -> s_fuelIntake.intake(c_Constants.fuelIntakeSpeed);
-        )
+        return new SequentialCommandGroup
+        (
+            s_fuelIndexer.fast(),
+            new WaitCommand(0.5),
+            s_fuelShooter.fast()
+        );
     }
 
+    /**
     public Command coralIntake()
     {
         return new ParallelCommandGroup(
@@ -111,4 +114,5 @@ public class RobotSkills
   
         );
     }
+    */
 }

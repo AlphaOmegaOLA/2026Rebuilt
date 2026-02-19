@@ -8,15 +8,16 @@
   - 1 SparkMax
 
 ## Feeder Subsystem
-- 1 Neo Motor 
-- 1 SparkMax
+- Switched to a passive ramp design
+- ~~1 Neo Motor~~ 
+- ~~1 SparkMax~~
 
 ## Shooter Subsystem
 - Indexer
   - 1 Neo motors
   - 1 SparkMax
   - Activates .5 second after the shooter motors
-  
+
 - Shooter
   - 2 Neo motors
   - 2 SparkMax
