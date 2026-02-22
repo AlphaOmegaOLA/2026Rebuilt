@@ -16,6 +16,8 @@ import frc.robot.subsystems.Swerve;
 import frc.robot.States;
 import frc.robot.Constants.*;
 
+/** Most of the robot is driven by InstantCommands in Robot Container */
+
 public class RobotSkills
 {
     private final RobotSkillsConstants c_Constants = new RobotSkillsConstants();  
@@ -24,7 +26,6 @@ public class RobotSkills
     private PoseEstimator s_PoseEstimator;
     private Swerve s_Swerve;
     private Climber s_Climber;
-    private FuelFeeder s_fuelFeeder;
     private FuelIndexer s_fuelIndexer;
     private FuelIntake s_fuelIntake;
     private FuelShooter s_fuelShooter;

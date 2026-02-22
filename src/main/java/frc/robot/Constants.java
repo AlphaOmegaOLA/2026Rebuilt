@@ -34,8 +34,8 @@ public final class Constants
 
         // Drivetrain Constants
         // Did we update these measurements?
-        public static final double trackWidth = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
-        public static final double wheelBase = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
+        public static final double trackWidth = Units.inchesToMeters(22); //TODO: This must be tuned to specific robot
+        public static final double wheelBase = Units.inchesToMeters(22); //TODO: This must be tuned to specific robot
         public static final double wheelCircumference = chosenModule.wheelCircumference;
 
         public static final double driveRevToMeters =  wheelCircumference / (chosenModule.driveGearRatio);
@@ -167,8 +167,8 @@ public final class Constants
         
         public static final class FuelIntake
         {
-            public static final int FUEL_INTAKE_MOTOR_LEFT_ID = 11;
-            public static final int FUEL_INTAKE_MOTOR_RIGHT_ID = 90;
+            public static final int FUEL_INTAKE_MOTOR_LEFT_ID = 97;
+            public static final int FUEL_INTAKE_MOTOR_RIGHT_ID = 94;
             public static final boolean FUEL_INTAKE_MOTOR_LEFT_INVERTED = false;
             public static final boolean FUEL_INTAKE_MOTOR_RIGHT_INVERTED = false;
             public static final  IdleMode FUEL_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
@@ -189,7 +189,7 @@ public final class Constants
         public static final class FuelIntakeArm
         {
              // ARM MOTOR IDS AND SPEEDS
-             public static final int FUEL_INTAKE_ARM_MOTOR_ID = 5;
+             public static final int FUEL_INTAKE_ARM_MOTOR_ID = 96;
              public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
              public static final  IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;
@@ -249,7 +249,7 @@ public final class Constants
         
         public static final class FuelIndexer
         {
-            public static final int FUEL_INDEXER_MOTOR_ID = 11;
+            public static final int FUEL_INDEXER_MOTOR_ID = 98;
             public static final boolean FUEL_INDEXER_MOTOR_INVERTED = false;
             public static final  IdleMode FUEL_INDEXER_NEUTRAL_MODE = IdleMode.kBrake;
             public static final double FUEL_INDEXER_GEAR_RATIO = 1.0;
@@ -268,7 +268,7 @@ public final class Constants
         
         public static final class FuelShooter
         {
-            public static final int FUEL_SHOOTER_MOTOR_LEFT_ID = 11;
+            public static final int FUEL_SHOOTER_MOTOR_LEFT_ID = 99;
             public static final int FUEL_SHOOTER_MOTOR_RIGHT_ID = 90;
             public static final boolean FUEL_SHOOTER_MOTOR_LEFT_INVERTED = false;
             public static final boolean FUEL_SHOOTER_MOTOR_RIGHT_INVERTED = false;
@@ -290,7 +290,7 @@ public final class Constants
         public static final class Climber
         {
              // ARM MOTOR IDS AND SPEEDS
-             public static final int CLIMBER_MOTOR_ID = 5;
+             public static final int CLIMBER_MOTOR_ID = 95;
              public static final boolean CLIMBER_MOTOR_INVERTED = false;
              public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;

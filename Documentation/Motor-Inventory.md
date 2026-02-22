@@ -4,7 +4,7 @@
 - Intake game pieces
   - 1 Kraken
 - Move up and down
-  - 2 Neo motor - move intake up and down
+  - 1 Neo motor - move intake up and down
   - 1 SparkMax
 
 ## Feeder Subsystem

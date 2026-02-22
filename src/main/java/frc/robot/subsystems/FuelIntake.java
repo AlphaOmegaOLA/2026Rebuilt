@@ -3,8 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
+import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FuelIntakeConstants;
@@ -16,13 +15,13 @@ import frc.robot.Constants.FuelIntakeConstants;
  */
 public class FuelIntake extends SubsystemBase 
 {
-  private SparkMax fuelIntakeMotorLeft;
-  private SparkMax fuelIntakeMotorRight;
+  private TalonFX fuelIntakeMotorLeft;
+  private TalonFX fuelIntakeMotorRight;
 
   public FuelIntake() 
   {
-    fuelIntakeMotorLeft = new SparkMax(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_LEFT_ID, MotorType.kBrushless);
-    fuelIntakeMotorRight = new SparkMax(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_RIGHT_ID, MotorType.kBrushless);
+    fuelIntakeMotorLeft = new TalonFX(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_LEFT_ID);
+    fuelIntakeMotorRight = new TalonFX(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_RIGHT_ID);
     //hardwareConfigs = new HardwareConfigs();
   }
   
