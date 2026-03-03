@@ -44,6 +44,12 @@ public class FuelShooter extends SubsystemBase
           () -> this.setMotor(0));
   }
 
+  public Command stopShooting()
+  {
+      return this.startEnd(() -> this.setMotor(0),
+          () -> this.setMotor(0));
+  }
+
   public void manual(double speed)
   {
     this.setMotor(speed * .35);
@@ -57,5 +63,10 @@ public class FuelShooter extends SubsystemBase
   public void outtake(double speed)
   {
     this.setMotor(speed * .35);
+  }
+
+  public void stop()
+  {
+    this.setMotor(0);
   }
 }

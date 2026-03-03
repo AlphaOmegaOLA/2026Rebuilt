@@ -221,25 +221,6 @@ public final class Constants
         }
     }
 
-    /** We've replaced this with a passive ramp design but leaving it here until the ramp is installed and working */    
-    public final class FuelFeederConstants
-    {
-        public static final double FULL = 1.0;
-        public static final double HALF = 0.5;
-        public static final double QUARTER = 0.25;
-        
-        public static final class fuelFeeder
-        {
-            public static final int FUEL_FEEDER_MOTOR_ID = 11;
-            public static final boolean FUEL_FEEDER_MOTOR_INVERTED = false;
-            public static final  IdleMode FUEL_FEEDER_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double FUEL_INTAKEFUEL_FEEDER_GEAR_RATIO = 1.0;
-            public static final double FULL_SPEED = FULL;
-            public static final double HALF_SPEED = HALF;
-            public static final double QUARTER_SPEED = QUARTER;
-        }
-    }
-
     /** This is the bottom row of wheels that feed fuel up to the shooter */
     public final class FuelIndexerConstants
     {
@@ -296,10 +277,8 @@ public final class Constants
              public static final double FULL_SPEED = FULL;
              public static final double HALF_SPEED = HALF;
              public static final double QUARTER_SPEED = QUARTER;
-             // Uses the through bore encoder
-             //public static final int CORAL_ANGLE_ENCODER_ID = 0;
          
-             // CORAL ANGLES
+             // CLIMBER ANGLES
              // Need to determine the starting offset angle of the
              // Rev Through Bore Encoder and set it here:
              public static final Rotation2d CLIMBER_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
@@ -308,7 +287,7 @@ public final class Constants
              public static final double CLIMBER_READY_ANGLE = -30.0;
              public static final double CLIMBER_CLIMB_ANGLE = -180.0;
      
-             // ELEVATOR PID - we will tune these values!!
+             // CLIMBER PID - we will tune these values!!
              public static final int CLIMBER_ANGLE_CURRENT_LIMIT = 50;
              public static final double CLIMBER_UPDATE_OUTPUT = .02;
              public static final double CLIMBER_MAX_VELOCITY = 1.75;

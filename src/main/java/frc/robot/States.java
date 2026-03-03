@@ -23,14 +23,8 @@ public class States
        start, intake
     }
 
-    public static enum CoralIntakeArmStates 
-    {
-        coral0, coral1, coral2, intake
-    }
-
     public static DriveStates driveState = DriveStates.standard;
     public static AlignedStates alignedState = AlignedStates.normal;
     public static ClimberStates climberState = ClimberStates.start;
-    public static FuelIntakeArmStates fuelIntakeArmAngleState = FuelIntakeArmStates.start; 
-    public static CoralIntakeArmStates coralIntakeArmState = CoralIntakeArmStates.coral0;
+    public static FuelIntakeArmStates fuelIntakeArmAngleState = FuelIntakeArmStates.start;
 }

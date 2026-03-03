@@ -20,7 +20,7 @@ import frc.robot.Constants.*;
 
 public class RobotSkills
 {
-    private final RobotSkillsConstants c_Constants = new RobotSkillsConstants();  
+    private final RobotSkillsConstants constants = new RobotSkillsConstants();  
 
     /** Subsystems */
     private PoseEstimator s_PoseEstimator;
@@ -49,71 +49,36 @@ public class RobotSkills
         );
     }
 
-    /**
-    public Command coralIntake()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.intake),
-            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral0)
-        );
-    }
-
-    public Command coralStart()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral0),
-            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral0)
-        );
-    }
-
-    public Command coral1()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral1),
-            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral1)
-        );
-    }
-
-    public Command coral2()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral2),
-            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral2)
-        );
-    }
-
-    public Command autoTroughCoral()
-    {
-        return new ParallelCommandGroup(
-            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral2),
-            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral2)
-        );    
-    }
-
     public Command shootFast()
     {
-        return new InstantCommand(() -> this.coralShooter.fast());
+        return new InstantCommand(() -> this.s_fuelShooter.fast());
     }
 
-    public Command rollShortAndShoot()
+    public Command rollShort()
+    {
+        return new AutoDriveCommand
+            (
+                this.s_Swerve, "backward",
+                constants.backwardsRollInches,
+                constants.backwardsRollSeconds
+            );
+    }
+
+    public Command ShootRollClimb()
     {
         return new SequentialCommandGroup
         (
+            s_fuelShooter.fast(),
+            new WaitCommand(3.0),
+            s_fuelShooter.stopShooting(),
+            Commands.runOnce(() ->  States.climberState = States.ClimberStates.ready),
             new AutoDriveCommand
             (
-                this.swerve, "forward",
-                constants.forwardRollInches,
+                this.s_Swerve, "backward",
+                constants.backwardsRollInches,
                 constants.backwardsRollSourceSeconds
             ),
-            new ParallelCommandGroup(
-                this.autoTroughCoral(),
-                new SequentialCommandGroup(
-                    new WaitCommand(2.0),
-                    this.coralShooter.fast()
-                )
-            )
-  
+            Commands.runOnce(() ->  States.climberState = States.ClimberStates.climb)
         );
     }
-    */
 }

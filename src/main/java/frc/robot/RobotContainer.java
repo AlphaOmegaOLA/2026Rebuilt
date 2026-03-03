@@ -82,7 +82,6 @@ public class RobotContainer
     /* Subsystems */
     private final PoseEstimator s_PoseEstimator = new PoseEstimator();
     private final Swerve s_Swerve = new Swerve(s_PoseEstimator);
-    private final Climber s_Climber = new Climber();
     private final FuelIntake s_FuelIntake = new FuelIntake();
     private final FuelIntakeArm s_FuelIntakeArm = new FuelIntakeArm();
     private final FuelIndexer s_FuelIndexer = new FuelIndexer();
@@ -101,8 +100,8 @@ public class RobotContainer
         //NamedCommands.registerCommand("shootFast", autos.shootFast());
 
         autoChooser = new SendableChooser<>();
-        SmartDashboard.putData("Auto Mode", autoChooser);
-        //autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
+        //SmartDashboard.putData("Auto Mode", autoChooser);
+        //autoChooser.setDefaultOption("1 Shoot,BackUp,Climb", RobotSkills.shootRollClimb);
         //autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
         //autoChooser = AutoBuilder.buildAutoChooser();

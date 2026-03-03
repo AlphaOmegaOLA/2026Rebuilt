@@ -1,5 +1,10 @@
 package frc.robot;
 
+/** The Controller Map maps button numbers to button names to make coding easier.
+ * There sshould be no need to change this file unless you are using a different controller 
+ * or want to change the button mapping.
+ */
+
 public class ControllerMap {
    
     //Controllers

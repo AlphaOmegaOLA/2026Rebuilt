@@ -21,4 +21,10 @@ public class FuelShooterCommand extends Command
     {
         return this.fuelShooter.fast();
     }
+
+    public Command stop()
+    {
+        return this.fuelShooter.stopShooting();
+    }
+
 }
