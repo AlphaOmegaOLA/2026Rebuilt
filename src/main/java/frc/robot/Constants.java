@@ -26,7 +26,7 @@ public final class Constants
     //** Swerve drive system constants. Once we get this working, no touchy */
     public static final class Swerve 
     {
-        public static final int pigeonID = 18;
+        public static final int pigeonID = 19;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
         public static final COTSNeoSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
@@ -113,15 +113,15 @@ public final class Constants
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
 
         // Neutral Modes 
-        public static final  IdleMode angleNeutralMode = IdleMode.kCoast;
+        public static final  IdleMode angleNeutralMode = IdleMode.kBrake;
         public static final  IdleMode driveNeutralMode = IdleMode.kBrake;
 
         // Module Specific Constants 
         // Front Left Module - Module 0 
         public static final class Mod0 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 1;
-            public static final int angleMotorID = 3;
-            public static final int canCoderID = 2;
+            public static final int driveMotorID = 14;
+            public static final int angleMotorID = 13;
+            public static final int canCoderID = 11;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.450439);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -129,9 +129,9 @@ public final class Constants
 
         // Front Right Module - Module 1 
         public static final class Mod1 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 15;
-            public static final int angleMotorID = 17;
-            public static final int canCoderID = 16;
+            public static final int driveMotorID = 18;
+            public static final int angleMotorID = 16;
+            public static final int canCoderID = 17;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.103516);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -139,9 +139,9 @@ public final class Constants
         
         // Back Left Module - Module 2 
         public static final class Mod2 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 7;
-            public static final int angleMotorID = 9;
-            public static final int canCoderID = 8;
+            public static final int driveMotorID = 10;
+            public static final int angleMotorID = 6;
+            public static final int canCoderID = 7;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.149170);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -149,9 +149,9 @@ public final class Constants
 
         // Back Right Module - Module 3 
         public static final class Mod3 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 10;
-            public static final int angleMotorID = 13;
-            public static final int canCoderID = 12;
+            public static final int driveMotorID = 1;
+            public static final int angleMotorID = 5;
+            public static final int canCoderID = 4;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.117920);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -167,11 +167,9 @@ public final class Constants
         
         public static final class FuelIntake
         {
-            public static final int FUEL_INTAKE_MOTOR_LEFT_ID = 97;
-            public static final int FUEL_INTAKE_MOTOR_RIGHT_ID = 94;
-            public static final boolean FUEL_INTAKE_MOTOR_LEFT_INVERTED = false;
-            public static final boolean FUEL_INTAKE_MOTOR_RIGHT_INVERTED = false;
-            public static final  IdleMode FUEL_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final int FUEL_INTAKE_MOTOR_ID = 20;
+            public static final boolean FUEL_INTAKE_MOTOR_INVERTED = false;
+            public static final IdleMode FUEL_INTAKE_NEUTRAL_MODE = IdleMode.kCoast;
             public static final double FUEL_INTAKE_GEAR_RATIO = 1.0;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
@@ -189,9 +187,13 @@ public final class Constants
         public static final class FuelIntakeArm
         {
              // ARM MOTOR IDS AND SPEEDS
-             public static final int FUEL_INTAKE_ARM_MOTOR_ID = 96;
-             public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
-             public static final  IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
+             //public static final int FUEL_INTAKE_ARM_MOTOR_ID = 92;
+             public static final int FUEL_INTAKE_RIGHT_ARM_MOTOR_ID = 15;
+             public static final int FUEL_INTAKE_LEFT_ARM_MOTOR_ID = 12;
+             public static final boolean FUEL_INTAKE_RIGHT_ARM_MOTOR_INVERTED = false;
+             public static final boolean FUEL_INTAKE_LEFT_ARM_MOTOR_INVERTED = false;
+             //public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
+             public static final IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;
              public static final double HALF_SPEED = HALF;
              public static final double QUARTER_SPEED = QUARTER;
@@ -230,9 +232,9 @@ public final class Constants
         
         public static final class FuelIndexer
         {
-            public static final int FUEL_INDEXER_MOTOR_ID = 98;
+            public static final int FUEL_INDEXER_MOTOR_ID = 3;
             public static final boolean FUEL_INDEXER_MOTOR_INVERTED = false;
-            public static final  IdleMode FUEL_INDEXER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final  IdleMode FUEL_INDEXER_NEUTRAL_MODE = IdleMode.kCoast;
             public static final double FUEL_INDEXER_GEAR_RATIO = 1.0;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
@@ -249,11 +251,11 @@ public final class Constants
         
         public static final class FuelShooter
         {
-            public static final int FUEL_SHOOTER_MOTOR_LEFT_ID = 99;
-            public static final int FUEL_SHOOTER_MOTOR_RIGHT_ID = 90;
+            public static final int FUEL_SHOOTER_MOTOR_LEFT_ID = 8;
+            public static final int FUEL_SHOOTER_MOTOR_RIGHT_ID = 2;
             public static final boolean FUEL_SHOOTER_MOTOR_LEFT_INVERTED = false;
             public static final boolean FUEL_SHOOTER_MOTOR_RIGHT_INVERTED = false;
-            public static final  IdleMode FUEL_SHOOTER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final  IdleMode FUEL_SHOOTER_NEUTRAL_MODE = IdleMode.kCoast;
             public static final double FUEL_SHOOTER_GEAR_RATIO = 1.0;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
@@ -271,7 +273,7 @@ public final class Constants
         public static final class Climber
         {
              // ARM MOTOR IDS AND SPEEDS
-             public static final int CLIMBER_MOTOR_ID = 95;
+             public static final int CLIMBER_MOTOR_ID = 9;
              public static final boolean CLIMBER_MOTOR_INVERTED = false;
              public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;

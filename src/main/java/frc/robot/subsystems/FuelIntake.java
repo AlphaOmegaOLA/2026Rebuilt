@@ -15,20 +15,18 @@ import frc.robot.Constants.FuelIntakeConstants;
  */
 public class FuelIntake extends SubsystemBase 
 {
-  private TalonFX fuelIntakeMotorLeft;
-  private TalonFX fuelIntakeMotorRight;
+  private TalonFX fuelIntakeMotor;
 
   public FuelIntake() 
   {
-    fuelIntakeMotorLeft = new TalonFX(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_LEFT_ID);
-    fuelIntakeMotorRight = new TalonFX(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_RIGHT_ID);
+    fuelIntakeMotor = new TalonFX(FuelIntakeConstants.FuelIntake.FUEL_INTAKE_MOTOR_ID);
     //hardwareConfigs = new HardwareConfigs();
   }
   
   private void setMotor(double speed)
   {
-    fuelIntakeMotorLeft.set(speed);
-    fuelIntakeMotorRight.set(speed);
+    fuelIntakeMotor.set(speed);
+    fuelIntakeMotor.set(speed);
   }
 
   public Command slow()

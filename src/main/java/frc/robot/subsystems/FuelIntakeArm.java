@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkBase.ControlType;
 //import com.revrobotics.spark.SparkBase.PersistMode;
 //import com.revrobotics.spark.SparkBase.ResetMode;
@@ -21,30 +22,41 @@ import frc.robot.Constants.FuelIntakeArmConstants;
 
 public class FuelIntakeArm extends SubsystemBase 
 {
-  private SparkMax fuelIntakeArmMotor;
-  private RelativeEncoder fuelIntakeArmEncoder;
+  //private SparkMax fuelIntakeArmMotor;
+  //private RelativeEncoder fuelIntakeArmEncoder;
+  private SparkMax fuelIntakeRightArmMotor;
+  private SparkMax fuelIntakeLeftArmMotor;
+  private RelativeEncoder fuelIntakeRightArmEncoder;
+  private RelativeEncoder fuelIntakeLeftArmEncoder;
+  
   //private HardwareConfigs hardwareConfigs;
-  public SparkClosedLoopController closedLoopController;
+  public SparkClosedLoopController rightClosedLoopController;
+  public SparkClosedLoopController leftClosedLoopController;
   public double currentFuelIntakeArmTarget = 0.0;
 
   public FuelIntakeArm() 
   {
-    fuelIntakeArmMotor = new SparkMax(FuelIntakeArmConstants.FuelIntakeArm.FUEL_INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
-    fuelIntakeArmEncoder = fuelIntakeArmMotor.getEncoder();
+    fuelIntakeRightArmMotor = new SparkMax(FuelIntakeArmConstants.FuelIntakeArm.FUEL_INTAKE_RIGHT_ARM_MOTOR_ID, MotorType.kBrushless);
+    fuelIntakeLeftArmMotor = new SparkMax(FuelIntakeArmConstants.FuelIntakeArm.FUEL_INTAKE_LEFT_ARM_MOTOR_ID, MotorType.kBrushless);
+    fuelIntakeRightArmEncoder = fuelIntakeRightArmMotor.getEncoder();
+    fuelIntakeLeftArmEncoder = fuelIntakeLeftArmMotor.getEncoder();
     //hardwareConfigs = new HardwareConfigs();
-    fuelIntakeArmEncoder.setPosition(0);
+    fuelIntakeRightArmEncoder.setPosition(0);
+    fuelIntakeLeftArmEncoder.setPosition(0);
     //fuelIntakeAngleMotor.configure(hardwareConfigs.coralAngleSparkConfig, SparkMax.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    closedLoopController = fuelIntakeArmMotor.getClosedLoopController();
+    rightClosedLoopController = fuelIntakeRightArmMotor.getClosedLoopController();
+    leftClosedLoopController = fuelIntakeLeftArmMotor.getClosedLoopController();
   }
   
   public void setAngle(double angle)
   {
-    closedLoopController.setReference(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
+    rightClosedLoopController.setSetpoint(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
+    leftClosedLoopController.setSetpoint(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
 
   public double getAngle() 
   {
-    return fuelIntakeArmEncoder.getPosition();
+    return fuelIntakeRightArmEncoder.getPosition();
   }
  
  //Check if this is the correct method to get the angle
@@ -52,6 +64,6 @@ public class FuelIntakeArm extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("FUEL INTAKE ARM ANGLE", fuelIntakeArmEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE ARM ANGLE", fuelIntakeRightArmEncoder.getPosition());
   }
 }
