@@ -190,7 +190,7 @@ public final class Constants
              //public static final int FUEL_INTAKE_ARM_MOTOR_ID = 92;
              public static final int FUEL_INTAKE_RIGHT_ARM_MOTOR_ID = 15;
              public static final int FUEL_INTAKE_LEFT_ARM_MOTOR_ID = 12;
-             public static final boolean FUEL_INTAKE_RIGHT_ARM_MOTOR_INVERTED = false;
+             public static final boolean FUEL_INTAKE_RIGHT_ARM_MOTOR_INVERTED = true; //Maybe check this
              public static final boolean FUEL_INTAKE_LEFT_ARM_MOTOR_INVERTED = false;
              //public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
              public static final IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
@@ -233,7 +233,7 @@ public final class Constants
         public static final class FuelIndexer
         {
             public static final int FUEL_INDEXER_MOTOR_ID = 3;
-            public static final boolean FUEL_INDEXER_MOTOR_INVERTED = false;
+            public static final boolean FUEL_INDEXER_MOTOR_INVERTED = true;
             public static final  IdleMode FUEL_INDEXER_NEUTRAL_MODE = IdleMode.kCoast;
             public static final double FUEL_INDEXER_GEAR_RATIO = 1.0;
             public static final double FULL_SPEED = FULL;
@@ -275,7 +275,7 @@ public final class Constants
              // ARM MOTOR IDS AND SPEEDS
              public static final int CLIMBER_MOTOR_ID = 9;
              public static final boolean CLIMBER_MOTOR_INVERTED = false;
-             public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
+             public static final IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
              public static final double FULL_SPEED = FULL;
              public static final double HALF_SPEED = HALF;
              public static final double QUARTER_SPEED = QUARTER;
