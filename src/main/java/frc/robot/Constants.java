@@ -113,7 +113,7 @@ public final class Constants
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
 
         // Neutral Modes 
-        public static final  IdleMode angleNeutralMode = IdleMode.kBrake;
+        public static final  IdleMode angleNeutralMode = IdleMode.kCoast;
         public static final  IdleMode driveNeutralMode = IdleMode.kBrake;
 
         // Module Specific Constants 
@@ -190,7 +190,7 @@ public final class Constants
              //public static final int FUEL_INTAKE_ARM_MOTOR_ID = 92;
              public static final int FUEL_INTAKE_RIGHT_ARM_MOTOR_ID = 15;
              public static final int FUEL_INTAKE_LEFT_ARM_MOTOR_ID = 12;
-             public static final boolean FUEL_INTAKE_RIGHT_ARM_MOTOR_INVERTED = true; //Maybe check this
+             public static final boolean FUEL_INTAKE_RIGHT_ARM_MOTOR_INVERTED = false; //Maybe check this
              public static final boolean FUEL_INTAKE_LEFT_ARM_MOTOR_INVERTED = false;
              //public static final boolean FUEL_INTAKE_ARM_MOTOR_INVERTED = false;
              public static final IdleMode FUEL_INTAKE_ARM_NEUTRAL_MODE = IdleMode.kBrake;
@@ -203,10 +203,10 @@ public final class Constants
              // CORAL ANGLES
              // Need to determine the starting offset angle of the
              // Rev Through Bore Encoder and set it here:
-             public static final Rotation2d FUEL_INTAKE_ARM_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+             //public static final Rotation2d FUEL_INTAKE_ARM_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
              public static final double FUEL_INTAKE_ARM_MOTOR_GEAR_RATIO = 20.0;
-             public static final double FUEL_INTAKE_ARM_START_ANGLE = -30.0; // We hope this hits the tray
-             public static final double FUEL_INTAKE_ARM_GETFUEL_ANGLE = -180.0;
+             public static final double FUEL_INTAKE_ARM_START_ANGLE = 0.0;
+             public static final double FUEL_INTAKE_ARM_GETFUEL_ANGLE = -32.0;
      
              // ELEVATOR PID - we will tune these values!!
              public static final int FUEL_INTAKE_ARM_CURRENT_LIMIT = 50;
