@@ -77,10 +77,14 @@ public final class Constants
         public static final double closedLoopRamp = 0.0;
 
         // Angle Motor PID Values 
-        public static final double angleKP = chosenModule.angleKP;
+        /*public static final double angleKP = chosenModule.angleKP;
         public static final double angleKI = chosenModule.angleKI;
         public static final double angleKD = chosenModule.angleKD;
-        public static final double angleKF = chosenModule.angleKF;
+        public static final double angleKF = chosenModule.angleKF;*/
+        public static final double angleKP = 0.006; //TODO: This must be tuned to specific robot
+        public static final double angleKI = 0.0;
+        public static final double angleKD = 0.0;
+        public static final double angleKF = 0.0;
 
         // Drive Motor PID Values
         // Did we update this yet?
@@ -122,7 +126,7 @@ public final class Constants
             public static final int driveMotorID = 14;
             public static final int angleMotorID = 13;
             public static final int canCoderID = 11;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.450439);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.455322267);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -132,7 +136,7 @@ public final class Constants
             public static final int driveMotorID = 18;
             public static final int angleMotorID = 16;
             public static final int canCoderID = 17;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.103516);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.391601389);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -142,7 +146,7 @@ public final class Constants
             public static final int driveMotorID = 10;
             public static final int angleMotorID = 6;
             public static final int canCoderID = 7;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.149170);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.146728517);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -152,7 +156,7 @@ public final class Constants
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 5;
             public static final int canCoderID = 4;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.117920);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.388916017);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -283,18 +287,17 @@ public final class Constants
              // CLIMBER ANGLES
              // Need to determine the starting offset angle of the
              // Rev Through Bore Encoder and set it here:
-             public static final Rotation2d CLIMBER_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
-             public static final double CLIMBER_MOTOR_GEAR_RATIO = 20.0;
-             public static final double CLIMBER_START_ANGLE = -30.0;
-             public static final double CLIMBER_READY_ANGLE = -30.0;
-             public static final double CLIMBER_CLIMB_ANGLE = -180.0;
+             public static final double CLIMBER_MOTOR_GEAR_RATIO = 700.0;
+             public static final double CLIMBER_START_ANGLE = 0.0;
+             public static final double CLIMBER_READY_ANGLE = -90.0;
+             public static final double CLIMBER_CLIMB_ANGLE = 0.0;
      
              // CLIMBER PID - we will tune these values!!
              public static final int CLIMBER_ANGLE_CURRENT_LIMIT = 50;
              public static final double CLIMBER_UPDATE_OUTPUT = .02;
              public static final double CLIMBER_MAX_VELOCITY = 1.75;
              public static final double CLIMBER_MAX_ACCELERATION = .75;
-             public static final double CLIMBER_P = 0.005;
+             public static final double CLIMBER_P = 0.02;
              public static final double CLIMBER_I = 0.0;
              public static final double CLIMBER_D = 0.005;
              public static final double CLIMBER_S = 1.1;

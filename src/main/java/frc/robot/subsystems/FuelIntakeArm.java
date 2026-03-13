@@ -92,8 +92,8 @@ public class FuelIntakeArm extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("FUEL INTAKE RIGHT ARM POSITION", fuelIntakeRightArmEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE RIGHT ARM ANGLE", fuelIntakeRightArmEncoder.getPosition());
     //SmartDashboard.putNumber("FUEL INTAKE RIGHT ARM ANGLE", ((fuelIntakeRightArmEncoder.getPosition() / 20.0) * 360.0));
-    SmartDashboard.putNumber("FUEL INTAKE LEFT ARM POSITION", fuelIntakeLeftArmEncoder.getPosition());
+    SmartDashboard.putNumber("FUEL INTAKE LEFT ARM ANGLE", fuelIntakeLeftArmEncoder.getPosition());
   }
 }

@@ -26,7 +26,6 @@ public class FuelIntake extends SubsystemBase
   private void setMotor(double speed)
   {
     fuelIntakeMotor.set(speed * .75);
-    fuelIntakeMotor.set(speed * .75);
   }
 
   public Command slow()

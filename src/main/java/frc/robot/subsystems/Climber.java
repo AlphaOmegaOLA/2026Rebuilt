@@ -10,7 +10,10 @@ import com.revrobotics.spark.SparkBase.ControlType;
 //import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,23 +26,31 @@ public class Climber extends SubsystemBase
 {
   private SparkMax climberMotor;
   private RelativeEncoder climberEncoder;
-  //private HardwareConfigs hardwareConfigs;
+  private SparkMaxConfig climberMotorConfig;
   public SparkClosedLoopController closedLoopController;
   public double currentCoralIntakeArmTarget = 0.0;
 
   public Climber() 
   {
+    double degreesPerMotorRotation = 360.0 / ClimberConstants.Climber.CLIMBER_MOTOR_GEAR_RATIO;
+
     climberMotor = new SparkMax(ClimberConstants.Climber.CLIMBER_MOTOR_ID, MotorType.kBrushless);
+    climberMotorConfig = new SparkMaxConfig();
+    climberMotorConfig.encoder.positionConversionFactor(degreesPerMotorRotation);
+    climberMotorConfig.encoder.velocityConversionFactor(degreesPerMotorRotation / 60);
+    climberMotorConfig.closedLoop.p(ClimberConstants.Climber.CLIMBER_P);
+    climberMotorConfig.closedLoop.i(ClimberConstants.Climber.CLIMBER_I);
+    climberMotorConfig.closedLoop.d(ClimberConstants.Climber.CLIMBER_D);
+    climberMotor.configure(climberMotorConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+
     climberEncoder = climberMotor.getEncoder();
-    //hardwareConfigs = new HardwareConfigs();
     climberEncoder.setPosition(0);
-    //fuelIntakeAngleMotor.configure(hardwareConfigs.coralAngleSparkConfig, SparkMax.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     closedLoopController = climberMotor.getClosedLoopController();
   }
   
   public void setAngle(double angle)
   {
-    closedLoopController.setReference(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
+    closedLoopController.setSetpoint(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
 
   public double getAngle() 

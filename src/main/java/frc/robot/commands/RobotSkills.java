@@ -39,15 +39,16 @@ public class RobotSkills
         this.s_Swerve = s_Swerve;
     } 
 
-    public Command shootFuel()
+    public Command shootFuel() 
     {
-        return new SequentialCommandGroup
-        (
-            s_fuelIndexer.fast(),
+        return new ParallelCommandGroup(
+        s_fuelShooter.fast(),
+        new SequentialCommandGroup(
             new WaitCommand(0.5),
-            s_fuelShooter.fast()
-        );
-    }
+            s_fuelIndexer.fast()
+        )
+    );
+    }   
 
     public Command shootFast()
     {

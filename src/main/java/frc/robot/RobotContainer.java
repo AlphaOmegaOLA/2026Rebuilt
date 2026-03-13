@@ -86,6 +86,7 @@ public class RobotContainer
     private final FuelIntakeArm s_FuelIntakeArm = new FuelIntakeArm();
     private final FuelIndexer s_FuelIndexer = new FuelIndexer();
     private final FuelShooter s_FuelShooter = new FuelShooter();
+    private final Climber s_Climber = new Climber();
 
     /* Commands */
     // shootFuel spins up the indexer motor first and the shooter motor a half second later.
@@ -127,6 +128,9 @@ public class RobotContainer
 
         // Start the fuel intake arm movement and set to the default start angle.
         s_FuelIntakeArm.setDefaultCommand(new FuelIntakeArmAngleCommand(s_FuelIntakeArm));
+
+        // Start the climber movement and set to the default start position.
+        s_Climber.setDefaultCommand(new ClimberAngleCommand(s_Climber));
 
         // Start Camera */
         //usbcamera = CameraServer.startAutomaticCapture();

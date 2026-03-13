@@ -77,7 +77,7 @@ public class SwerveMod{
 
     }
 
-    private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
+    /*private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
        
         if(isOpenLoop)
         {
@@ -91,7 +91,24 @@ public class SwerveMod{
         SparkClosedLoopController controller = mDriveMotor.getClosedLoopController();
         controller.setReference(velocity, ControlType.kVelocity, ClosedLoopSlot.kSlot0);
         
-    }
+    }*/
+
+    private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
+        SmartDashboard.putNumber("Mod " + moduleNumber + " Desired Speed", desiredState.speedMetersPerSecond);
+
+        if (isOpenLoop) 
+        {
+            double percentOutput = desiredState.speedMetersPerSecond / Constants.Swerve.maxSpeed;
+            SmartDashboard.putNumber("Mod " + moduleNumber + " Drive Percent", percentOutput);
+            mDriveMotor.set(percentOutput);
+            SmartDashboard.putNumber("Mod " + moduleNumber + " Drive Applied Output", mDriveMotor.getAppliedOutput());
+            return;
+        }
+
+        double velocity = desiredState.speedMetersPerSecond;
+        SparkClosedLoopController controller = mDriveMotor.getClosedLoopController();
+        controller.setSetpoint(velocity, ControlType.kVelocity, ClosedLoopSlot.kSlot0);
+}
 
     private void setAngle(SwerveModuleState desiredState) {
        if(Math.abs(desiredState.speedMetersPerSecond) <= (Constants.Swerve.maxSpeed * 0.01))

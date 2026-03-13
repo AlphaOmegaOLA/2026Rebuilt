@@ -28,13 +28,13 @@ public class FuelShooter extends SubsystemBase
   
   private void setMotor(double speed)
   {
-    fuelShooterMotorLeft.set(speed);
+    fuelShooterMotorLeft.set(-speed);
     fuelShooterMotorRight.set(speed);
   }
 
   public Command slow()
   {
-      return this.startEnd(() -> this.setMotor(-FuelShooterConstants.FuelShooter.HALF_SPEED),
+      return this.startEnd(() -> this.setMotor(FuelShooterConstants.FuelShooter.HALF_SPEED),
           () -> this.setMotor(0));
   }
 
