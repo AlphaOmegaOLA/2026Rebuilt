@@ -67,6 +67,8 @@ public class RobotContainer
     /* Operator Buttons */
     // X = Shoot Fuel
     private final JoystickButton b_shoot_Fuel = new JoystickButton(operator, XboxController.Button.kX.value);
+    // Y = Shoot Short Fuel (half speed) for shorter distances
+    //private final JoystickButton b_shoot_Short_Fuel = new JoystickButton(operator, XboxController.Button.kY.value);
     // Left Bumper = Climber Down
     private final JoystickButton b_climber_Down = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     // A = Move Fuel Intake Arm to the intake angle
@@ -90,7 +92,9 @@ public class RobotContainer
 
     /* Commands */
     // shootFuel spins up the indexer motor first and the shooter motor a half second later.
-    private final Command c_shoot_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootFuel();
+    private final Command c_shoot_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).shootFuel();
+    private final Command c_shootRollClimb = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).ShootRollClimb();
+    private final Command c_shoot_Short_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).shootShortFuel();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
@@ -101,7 +105,9 @@ public class RobotContainer
         //NamedCommands.registerCommand("shootFast", autos.shootFast());
 
         autoChooser = new SendableChooser<>();
-        //SmartDashboard.putData("Auto Mode", autoChooser);
+        autoChooser.setDefaultOption("Shoot Roll Climb", c_shootRollClimb);
+        autoChooser.addOption("Shoot Only", c_shoot_Fuel);
+        SmartDashboard.putData("Auto Mode", autoChooser);
         //autoChooser.setDefaultOption("1 Shoot,BackUp,Climb", RobotSkills.shootRollClimb);
         //autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
@@ -161,6 +167,8 @@ public class RobotContainer
         b_fuel_Arm_Start_Angle.onTrue(new InstantCommand(() -> States.fuelIntakeArmAngleState = States.FuelIntakeArmStates.start));
         // Shoot fuel
         b_shoot_Fuel.whileTrue(c_shoot_Fuel);
+        // Shoot short fuel (half speed for closer targets)
+        //b_shoot_Short_Fuel.whileTrue(c_shoot_Short_Fuel);
         
         /** Log button presses to dashboard for Dashboard for debugging */
         b_climber_Ready.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER READY BUTTON")));

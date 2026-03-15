@@ -31,12 +31,13 @@ public class RobotSkills
     private FuelShooter s_fuelShooter;
 
 
-    public RobotSkills(FuelShooter s_fuelShooter, FuelIndexer s_fuelIndexer, FuelIntake s_fuelIntake, Swerve s_Swerve)
+    public RobotSkills(FuelShooter s_fuelShooter, FuelIndexer s_fuelIndexer, FuelIntake s_fuelIntake, Swerve s_Swerve, Climber s_Climber)
     {
         this.s_fuelShooter = s_fuelShooter;
         this.s_fuelIndexer = s_fuelIndexer;
         this.s_fuelIntake = s_fuelIntake;
         this.s_Swerve = s_Swerve;
+        this.s_Climber = s_Climber;
     } 
 
     public Command shootFuel() 
@@ -44,11 +45,22 @@ public class RobotSkills
         return new ParallelCommandGroup(
         s_fuelShooter.fast(),
         new SequentialCommandGroup(
-            new WaitCommand(0.5),
+            new WaitCommand(1),
             s_fuelIndexer.fast()
         )
     );
-    }   
+    }
+    
+    public Command shootShortFuel() 
+    {
+        return new ParallelCommandGroup(
+        s_fuelShooter.slow(),
+        new SequentialCommandGroup(
+            new WaitCommand(1),
+            s_fuelIndexer.fast()
+        )
+    );
+    }
 
     public Command shootFast()
     {
@@ -65,7 +77,7 @@ public class RobotSkills
             );
     }
 
-    public Command ShootRollClimb()
+    /*public Command ShootRollClimb()
     {
         return new SequentialCommandGroup
         (
@@ -80,6 +92,32 @@ public class RobotSkills
                 constants.backwardsRollSourceSeconds
             ),
             Commands.runOnce(() ->  States.climberState = States.ClimberStates.climb)
+        );
+    }*/
+
+    public Command ShootRollClimb()
+    {
+        return new SequentialCommandGroup(
+            new ParallelCommandGroup(
+                s_fuelShooter.fast(),
+                new SequentialCommandGroup(
+                    new WaitCommand(1),
+                    s_fuelIndexer.fast()
+                )
+            ).withTimeout(3.0),
+
+            Commands.runOnce(() -> States.climberState = States.ClimberStates.ready),
+            new WaitCommand(2.0),
+
+            new AutoDriveCommand(
+                this.s_Swerve,
+                "backward",
+                constants.backwardsRollInches,
+                constants.backwardsRollSourceSeconds
+            ),
+
+            Commands.runOnce(() -> States.climberState = States.ClimberStates.climb),
+            new WaitCommand(3.0)
         );
     }
 }

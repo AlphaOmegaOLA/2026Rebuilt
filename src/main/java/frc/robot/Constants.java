@@ -136,7 +136,7 @@ public final class Constants
             public static final int driveMotorID = 18;
             public static final int angleMotorID = 16;
             public static final int canCoderID = 17;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.391601389);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.113769531);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -156,7 +156,7 @@ public final class Constants
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 5;
             public static final int canCoderID = 4;
-            public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.388916017);
+            public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.120117189);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -210,14 +210,14 @@ public final class Constants
              //public static final Rotation2d FUEL_INTAKE_ARM_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
              public static final double FUEL_INTAKE_ARM_MOTOR_GEAR_RATIO = 20.0;
              public static final double FUEL_INTAKE_ARM_START_ANGLE = 0.0;
-             public static final double FUEL_INTAKE_ARM_GETFUEL_ANGLE = -32.0;
+             public static final double FUEL_INTAKE_ARM_GETFUEL_ANGLE = -82.0;
      
              // ELEVATOR PID - we will tune these values!!
              public static final int FUEL_INTAKE_ARM_CURRENT_LIMIT = 50;
              public static final double FUEL_INTAKE_ARM_UPDATE_OUTPUT = .02;
              public static final double FUEL_INTAKE_ARM_MAX_VELOCITY = 1.75;
              public static final double FUEL_INTAKE_ARM_MAX_ACCELERATION = .75;
-             public static final double FUEL_INTAKE_ARM_P = 0.005;
+             public static final double FUEL_INTAKE_ARM_P = 0.002;
              public static final double FUEL_INTAKE_ARM_I = 0.0;
              public static final double FUEL_INTAKE_ARM_D = 0.005;
              public static final double FUEL_INTAKE_ARM_S = 1.1;
@@ -289,7 +289,7 @@ public final class Constants
              // Rev Through Bore Encoder and set it here:
              public static final double CLIMBER_MOTOR_GEAR_RATIO = 700.0;
              public static final double CLIMBER_START_ANGLE = 0.0;
-             public static final double CLIMBER_READY_ANGLE = -90.0;
+             public static final double CLIMBER_READY_ANGLE = -139.0;
              public static final double CLIMBER_CLIMB_ANGLE = 0.0;
      
              // CLIMBER PID - we will tune these values!!

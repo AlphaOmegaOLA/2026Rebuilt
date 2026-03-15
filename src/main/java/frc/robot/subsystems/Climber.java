@@ -28,7 +28,7 @@ public class Climber extends SubsystemBase
   private RelativeEncoder climberEncoder;
   private SparkMaxConfig climberMotorConfig;
   public SparkClosedLoopController closedLoopController;
-  public double currentCoralIntakeArmTarget = 0.0;
+  public double currentClimberTarget = 0.0;
 
   public Climber() 
   {
@@ -50,6 +50,7 @@ public class Climber extends SubsystemBase
   
   public void setAngle(double angle)
   {
+    currentClimberTarget = angle;
     closedLoopController.setSetpoint(angle, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
 
@@ -64,5 +65,7 @@ public class Climber extends SubsystemBase
   {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("CLIMBER ANGLE", climberEncoder.getPosition());
+    SmartDashboard.putNumber("CLIMBER TARGET", currentClimberTarget);
+    SmartDashboard.putNumber("CLIMBER APPLIED OUTPUT", climberMotor.getAppliedOutput());
   }
 }

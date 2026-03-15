@@ -37,7 +37,7 @@ public class FuelIndexer extends SubsystemBase
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED),
+      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED * .2),
           () -> this.setMotor(0));
   }
 

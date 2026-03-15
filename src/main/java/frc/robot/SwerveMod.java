@@ -108,19 +108,20 @@ public class SwerveMod{
         double velocity = desiredState.speedMetersPerSecond;
         SparkClosedLoopController controller = mDriveMotor.getClosedLoopController();
         controller.setSetpoint(velocity, ControlType.kVelocity, ClosedLoopSlot.kSlot0);
-}
+    }
 
-    private void setAngle(SwerveModuleState desiredState) {
-       if(Math.abs(desiredState.speedMetersPerSecond) <= (Constants.Swerve.maxSpeed * 0.01))
-       {
-        mAngleMotor.stopMotor();
-        return;
-       }
-       Rotation2d angle = desiredState.angle;
-        
+   private void setAngle(SwerveModuleState desiredState) 
+   {
+        if (Math.abs(desiredState.speedMetersPerSecond) <= (Constants.Swerve.maxSpeed * 0.01)) 
+        {
+            mAngleMotor.stopMotor();
+            return;
+        }
+
+        double target = Math.IEEEremainder(desiredState.angle.getDegrees(), 360.0);
+
         SparkClosedLoopController controller = mAngleMotor.getClosedLoopController();
-        
-        controller.setReference(angle.getDegrees(), ControlType.kPosition, ClosedLoopSlot.kSlot0);
+        controller.setSetpoint(target, ControlType.kPosition, ClosedLoopSlot.kSlot0);
     } 
 
     private Rotation2d getAngle(){
@@ -139,8 +140,10 @@ public class SwerveMod{
         this.moduleNumber = moduleNumber;
     }
 
-    public void resetToAbsolute(){
+    public void resetToAbsolute() 
+    {
         double absolutePosition = getCANcoder().getDegrees() - angleOffset.getDegrees();
+        absolutePosition = Math.IEEEremainder(absolutePosition, 360.0);
         relAngleEncoder.setPosition(absolutePosition);
     }
 

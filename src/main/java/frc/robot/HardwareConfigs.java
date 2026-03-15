@@ -30,7 +30,7 @@ public final class HardwareConfigs
        swerveAngleSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
        swerveAngleSparkConfig.encoder.velocityConversionFactor((360.0 / Constants.Swerve.angleGearRatio) / 60.0);
        swerveAngleSparkConfig.closedLoop.positionWrappingEnabled(true);
-       //swerveAngleSparkConfig.closedLoop.positionWrappingInputRange(0.0, 360.0);
+       swerveAngleSparkConfig.closedLoop.positionWrappingInputRange(-180.0, 180.0);
 
        //current limiting
        swerveAngleSparkConfig.smartCurrentLimit(40);

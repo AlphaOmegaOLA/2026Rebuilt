@@ -11,7 +11,7 @@ public class RobotSkillsConstants
     public double sideRollInches = 14;
 
     // Rolling time in seconds
-    public double backwardsRollSeconds = .5;
+    public double backwardsRollSeconds = 1;
     public double forwardRollSeconds = 1.3;
     public double sideRollSeconds = 1.3;
 
