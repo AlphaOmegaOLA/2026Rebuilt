@@ -5,8 +5,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.States;
-import frc.robot.subsystems.Climber;
-
+//import frc.robot.subsystems.Climber;
+/* 
 public class ClimberAngleCommand extends Command
 {
     private Climber climberHooks;
@@ -34,4 +34,4 @@ public class ClimberAngleCommand extends Command
         } 
         climberHooks.setAngle(currentClimberHooksAngleTarget);
     }
-}
+}*/
