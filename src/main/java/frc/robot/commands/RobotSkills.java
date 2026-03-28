@@ -25,22 +25,33 @@ public class RobotSkills
     /** Subsystems */
     private PoseEstimator s_PoseEstimator;
     private Swerve s_Swerve;
-    private Climber s_Climber;
+    //private Climber s_Climber;
     private FuelIndexer s_fuelIndexer;
     private FuelIntake s_fuelIntake;
     private FuelShooter s_fuelShooter;
 
 
-    public RobotSkills(FuelShooter s_fuelShooter, FuelIndexer s_fuelIndexer, FuelIntake s_fuelIntake, Swerve s_Swerve, Climber s_Climber)
+    public RobotSkills(FuelShooter s_fuelShooter, FuelIndexer s_fuelIndexer, FuelIntake s_fuelIntake, Swerve s_Swerve)
     {
         this.s_fuelShooter = s_fuelShooter;
         this.s_fuelIndexer = s_fuelIndexer;
         this.s_fuelIntake = s_fuelIntake;
         this.s_Swerve = s_Swerve;
-        this.s_Climber = s_Climber;
+        //this.s_Climber = s_Climber;
     } 
 
     public Command shootFuel() 
+    {
+        return new ParallelCommandGroup(
+        s_fuelShooter.slow(),
+        new SequentialCommandGroup(
+            new WaitCommand(1),
+            s_fuelIndexer.slow()
+        )
+    );
+    }
+    
+    /*public Command shootLongFuel() 
     {
         return new ParallelCommandGroup(
         s_fuelShooter.fast(),
@@ -49,16 +60,16 @@ public class RobotSkills
             s_fuelIndexer.fast()
         )
     );
-    }
-    
-    public Command shootShortFuel() 
+    }*/
+
+    public Command shootFuelOnly() 
     {
         return new ParallelCommandGroup(
-        s_fuelShooter.slow(),
+        s_fuelShooter.fast(),
         new SequentialCommandGroup(
             new WaitCommand(1),
             s_fuelIndexer.fast()
-        )
+        ).withTimeout(3.0)
     );
     }
 

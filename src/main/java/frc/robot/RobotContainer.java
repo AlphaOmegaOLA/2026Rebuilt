@@ -88,13 +88,13 @@ public class RobotContainer
     private final FuelIntakeArm s_FuelIntakeArm = new FuelIntakeArm();
     private final FuelIndexer s_FuelIndexer = new FuelIndexer();
     private final FuelShooter s_FuelShooter = new FuelShooter();
-    private final Climber s_Climber = new Climber();
+    //private final Climber s_Climber = new Climber();
 
     /* Commands */
     // shootFuel spins up the indexer motor first and the shooter motor a half second later.
-    private final Command c_shoot_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).shootFuel();
-    private final Command c_shootRollClimb = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).ShootRollClimb();
-    private final Command c_shoot_Short_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).shootShortFuel();
+    private final Command c_shoot_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootFuel();
+    //private final Command c_shootRollClimb = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).ShootRollClimb();
+    private final Command c_shootFuelOnlyAuto = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootFuelOnly();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
@@ -105,8 +105,8 @@ public class RobotContainer
         //NamedCommands.registerCommand("shootFast", autos.shootFast());
 
         autoChooser = new SendableChooser<>();
-        autoChooser.setDefaultOption("Shoot Roll Climb", c_shootRollClimb);
-        autoChooser.addOption("Shoot Only", c_shoot_Fuel);
+        //autoChooser.addOption("Shoot Roll Climb", c_shootRollClimb);
+        autoChooser.setDefaultOption("Shoot Only", c_shootFuelOnlyAuto);
         SmartDashboard.putData("Auto Mode", autoChooser);
         //autoChooser.setDefaultOption("1 Shoot,BackUp,Climb", RobotSkills.shootRollClimb);
         //autoChooser.addOption("Limelight auto", autoAlign);
@@ -136,7 +136,7 @@ public class RobotContainer
         s_FuelIntakeArm.setDefaultCommand(new FuelIntakeArmAngleCommand(s_FuelIntakeArm));
 
         // Start the climber movement and set to the default start position.
-        s_Climber.setDefaultCommand(new ClimberAngleCommand(s_Climber));
+        //s_Climber.setDefaultCommand(new ClimberAngleCommand(s_Climber));
 
         // Start Camera */
         //usbcamera = CameraServer.startAutomaticCapture();
@@ -156,11 +156,11 @@ public class RobotContainer
 
         /* Operator Buttons */
         // Climber Ready Position
-        b_climber_Ready.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.ready));
+        //b_climber_Ready.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.ready));
         // Climb!
-        b_climber_Up.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.climb));
+       // b_climber_Up.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.climb));
         // Climber Down
-        b_climber_Down.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.start));
+       // b_climber_Down.onTrue(new InstantCommand(() -> States.climberState = States.ClimberStates.start));
         // Set intake arm to the intake angle
         b_fuel_Arm_Intake_Angle.onTrue(new InstantCommand(() -> States.fuelIntakeArmAngleState = States.FuelIntakeArmStates.intake));
         // Set intake arm to the starting angle. This is also the default when the robot intitializes. 

@@ -36,7 +36,7 @@ public class FuelIntake extends SubsystemBase
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-FuelIntakeConstants.FuelIntake.FULL_SPEED * .9),
+      return this.startEnd(() -> this.setMotor(-FuelIntakeConstants.FuelIntake.FULL_SPEED),
           () -> this.setMotor(0));
   }
 

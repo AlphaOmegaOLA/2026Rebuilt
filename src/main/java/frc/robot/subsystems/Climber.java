@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
 //import frc.robot.HardwareConfigs;
 //import frc.robot.Robot;
-
+/* 
 public class Climber extends SubsystemBase 
 {
   private SparkMax climberMotor;
@@ -68,4 +68,4 @@ public class Climber extends SubsystemBase
     SmartDashboard.putNumber("CLIMBER TARGET", currentClimberTarget);
     SmartDashboard.putNumber("CLIMBER APPLIED OUTPUT", climberMotor.getAppliedOutput());
   }
-}
+}*/
