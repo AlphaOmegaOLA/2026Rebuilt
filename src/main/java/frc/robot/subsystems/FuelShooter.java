@@ -34,7 +34,13 @@ public class FuelShooter extends SubsystemBase
 
   public Command slow()
   {
-      return this.startEnd(() -> this.setMotor(-FuelShooterConstants.FuelShooter.HALF_SPEED),
+      return this.startEnd(() -> this.setMotor(-FuelShooterConstants.FuelShooter.FULL_SPEED * .8),
+          () -> this.setMotor(0));
+  }
+
+  public Command medium()
+  {
+      return this.startEnd(() -> this.setMotor(-FuelShooterConstants.FuelShooter.FULL_SPEED * .92),
           () -> this.setMotor(0));
   }
 

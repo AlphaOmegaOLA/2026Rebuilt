@@ -66,19 +66,19 @@ public class RobotContainer
 
     /* Operator Buttons */
     // X = Shoot Fuel
-    private final JoystickButton b_shoot_Fuel = new JoystickButton(operator, XboxController.Button.kX.value);
+    private final JoystickButton b_shoot_Short_Fuel = new JoystickButton(operator, XboxController.Button.kX.value);
     // Y = Shoot Short Fuel (half speed) for shorter distances
-    //private final JoystickButton b_shoot_Short_Fuel = new JoystickButton(operator, XboxController.Button.kY.value);
+    private final JoystickButton b_shoot_Mid_Fuel = new JoystickButton(operator, XboxController.Button.kY.value);
     // Left Bumper = Climber Down
-    private final JoystickButton b_climber_Down = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton b_shoot_Long_Fuel = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     // A = Move Fuel Intake Arm to the intake angle
     private final JoystickButton b_fuel_Arm_Intake_Angle = new JoystickButton(operator, XboxController.Button.kA.value);
     // B = Move Fuel Intake Arm to the starting angle. This is also the default when the robot initializes.
     private final JoystickButton b_fuel_Arm_Start_Angle = new JoystickButton(operator, XboxController.Button.kB.value);
     // Right Trigger = Climb Up
-    private final Trigger b_climber_Up = new Trigger(() -> operator.getRightTriggerAxis() > 0.5);
+    //private final Trigger b_climber_Up = new Trigger(() -> operator.getRightTriggerAxis() > 0.5);
     // Left Trigger = Coral2 Position and Angle
-    private final Trigger b_climber_Ready = new Trigger(() -> operator.getLeftTriggerAxis() > 0.5);
+    //private final Trigger b_climber_Ready = new Trigger(() -> operator.getLeftTriggerAxis() > 0.5);
 
 
     /* Subsystems */
@@ -92,9 +92,12 @@ public class RobotContainer
 
     /* Commands */
     // shootFuel spins up the indexer motor first and the shooter motor a half second later.
-    private final Command c_shoot_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootFuel();
-    //private final Command c_shootRollClimb = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve, s_Climber).ShootRollClimb();
-    private final Command c_shootFuelOnlyAuto = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootFuelOnly();
+    private final Command c_shoot_Short_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootShortFuel();
+    private final Command c_shoot_Mid_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootMidFuel();
+    private final Command c_shoot_Long_Fuel = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootLongFuel();
+    private final Command c_shootShortFuelAuto = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootShortFuelAuto();
+    private final Command c_shootMidFuelAuto = new RobotSkills(s_FuelShooter, s_FuelIndexer, s_FuelIntake, s_Swerve).shootMidFuelAuto();
+
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
@@ -106,7 +109,9 @@ public class RobotContainer
 
         autoChooser = new SendableChooser<>();
         //autoChooser.addOption("Shoot Roll Climb", c_shootRollClimb);
-        autoChooser.setDefaultOption("Shoot Only", c_shootFuelOnlyAuto);
+        autoChooser.setDefaultOption("Shoot Short, Bump", c_shootShortFuelAuto);
+        autoChooser.addOption("Shoot Mid, Trench", c_shootMidFuelAuto);
+
         SmartDashboard.putData("Auto Mode", autoChooser);
         //autoChooser.setDefaultOption("1 Shoot,BackUp,Climb", RobotSkills.shootRollClimb);
         //autoChooser.addOption("Limelight auto", autoAlign);
@@ -165,18 +170,20 @@ public class RobotContainer
         b_fuel_Arm_Intake_Angle.onTrue(new InstantCommand(() -> States.fuelIntakeArmAngleState = States.FuelIntakeArmStates.intake));
         // Set intake arm to the starting angle. This is also the default when the robot intitializes. 
         b_fuel_Arm_Start_Angle.onTrue(new InstantCommand(() -> States.fuelIntakeArmAngleState = States.FuelIntakeArmStates.start));
-        // Shoot fuel
-        b_shoot_Fuel.whileTrue(c_shoot_Fuel);
-        // Shoot short fuel (half speed for closer targets)
-        //b_shoot_Short_Fuel.whileTrue(c_shoot_Short_Fuel);
+        // Shoot short fuel
+        b_shoot_Short_Fuel.whileTrue(c_shoot_Short_Fuel);
+        // Shoot Mid fuel 
+        b_shoot_Mid_Fuel.whileTrue(c_shoot_Mid_Fuel);
+        // Shoot long fuel
+        b_shoot_Long_Fuel.whileTrue(c_shoot_Long_Fuel);
         
         /** Log button presses to dashboard for Dashboard for debugging */
-        b_climber_Ready.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER READY BUTTON")));
-        b_climber_Up.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER UP BUTTON")));
-        b_climber_Down.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER DOWN BUTTON")));
+        //b_climber_Ready.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER READY BUTTON")));
+       // b_climber_Up.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER UP BUTTON")));
+       // b_climber_Down.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CLIMBER DOWN BUTTON")));
         b_fuel_Arm_Intake_Angle.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "INTAKE ARM INTAKE BUTTON")));
         b_fuel_Arm_Start_Angle.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "INTAKE ARM START BUTTON")));
-        b_shoot_Fuel.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "SHOOT FUEL BUTTON")));
+        b_shoot_Short_Fuel.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "SHOOT FUEL BUTTON")));
     }
 
     /**

@@ -31,13 +31,19 @@ public class FuelIndexer extends SubsystemBase
 
   public Command slow()
   {
-      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.HALF_SPEED),
+      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED * .75),
+          () -> this.setMotor(0));
+  }
+
+  public Command medium()
+  {
+      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED *.9),
           () -> this.setMotor(0));
   }
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED * .8),
+      return this.startEnd(() -> this.setMotor(-FuelIndexerConstants.FuelIndexer.FULL_SPEED),
           () -> this.setMotor(0));
   }
 

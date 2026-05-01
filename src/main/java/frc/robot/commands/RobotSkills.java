@@ -40,7 +40,7 @@ public class RobotSkills
         //this.s_Climber = s_Climber;
     } 
 
-    public Command shootFuel() 
+    public Command shootShortFuel() 
     {
         return new ParallelCommandGroup(
         s_fuelShooter.slow(),
@@ -50,8 +50,19 @@ public class RobotSkills
         )
     );
     }
+
+     public Command shootMidFuel() 
+    {
+        return new ParallelCommandGroup(
+        s_fuelShooter.medium(),
+        new SequentialCommandGroup(
+            new WaitCommand(1),
+            s_fuelIndexer.medium()
+        )
+    );
+    }
     
-    /*public Command shootLongFuel() 
+    public Command shootLongFuel() 
     {
         return new ParallelCommandGroup(
         s_fuelShooter.fast(),
@@ -60,17 +71,28 @@ public class RobotSkills
             s_fuelIndexer.fast()
         )
     );
-    }*/
+    }
 
-    public Command shootFuelOnly() 
+    public Command shootMidFuelAuto() 
     {
         return new ParallelCommandGroup(
-        s_fuelShooter.fast(),
+        s_fuelShooter.medium(),
         new SequentialCommandGroup(
             new WaitCommand(1),
-            s_fuelIndexer.fast()
-        ).withTimeout(3.0)
-    );
+            s_fuelIndexer.medium()
+        )
+    ).withTimeout(5);
+    }
+
+    public Command shootShortFuelAuto() 
+    {
+        return new ParallelCommandGroup(
+        s_fuelShooter.slow(),
+        new SequentialCommandGroup(
+            new WaitCommand(1),
+            s_fuelIndexer.slow()
+        )
+    ).withTimeout(5);
     }
 
     public Command shootFast()

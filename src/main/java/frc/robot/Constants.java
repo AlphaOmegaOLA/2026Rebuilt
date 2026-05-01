@@ -217,7 +217,7 @@ public final class Constants
              public static final double FUEL_INTAKE_ARM_UPDATE_OUTPUT = .02;
              public static final double FUEL_INTAKE_ARM_MAX_VELOCITY = 1.75;
              public static final double FUEL_INTAKE_ARM_MAX_ACCELERATION = .75;
-             public static final double FUEL_INTAKE_ARM_P = 0.002;
+             public static final double FUEL_INTAKE_ARM_P = 0.004;
              public static final double FUEL_INTAKE_ARM_I = 0.0;
              public static final double FUEL_INTAKE_ARM_D = 0.005;
              public static final double FUEL_INTAKE_ARM_S = 1.1;
